@@ -8,7 +8,7 @@ const SecurePage  = () => {
   return(
     <View style={{ justifyContent: 'center', alignItems: 'center', flex:1 }}>
       <Text>App</Text>
-      <Text>user = {user.nama_lengkap}</Text>
+      <Text>user = {user.user.nama_lengkap}</Text>
       <Button title='logout' onPress={() => {logout()}} />
     </View>
   )
