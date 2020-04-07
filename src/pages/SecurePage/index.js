@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Button } from 'react-native';
 import {AuthContext} from './../../provider/AuthProvider';
 
 const SecurePage  = () => {
-  const auth = useContext(AuthContext); 
+  const {logout, user} = useContext(AuthContext); 
+  // console.log(auth.user);
   return(
     <View style={{ justifyContent: 'center', alignItems: 'center', flex:1 }}>
       <Text>App</Text>
-      <Text>user = {auth.user.nama}</Text>
+      <Text>user = {user.nama_lengkap}</Text>
+      <Button title='logout' onPress={() => {logout()}} />
     </View>
   )
 }

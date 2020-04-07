@@ -1,10 +1,8 @@
-import React, { Component, createContext } from 'react';
-import { View, Text, Button } from 'react-native';
-import { Axios } from '../config';
-import { Toast } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
+import { Toast } from 'native-base';
+import React, { Component, createContext } from 'react';
+import { Axios } from '../config';
 export const AuthContext = createContext();
-
 
 export default class AuthProvider extends Component {
   state = { loading: true, authenticated: false, user: {} }
@@ -22,45 +20,57 @@ export default class AuthProvider extends Component {
   }
 
   login = (email, password) => {
+
+    this.setState({ loading: true });
     const credentials = {
       email: email,
       password: password,
       device_name: 'mobile'
     }
 
-    // const credentials = {
-    //   email: 'achmadfaz@gmail.com',
-    //   password: 'Ahmadh2397',
-    //   device_name: 'mobile'
-    // }
-
     Axios.post('auth/login', credentials)
       .then(res => {
         const response = res.data;
         AsyncStorage.setItem('user', JSON.stringify(response));
-        this.setState({ authenticated: true });
+        this.setState({ authenticated: true, user: response, loading: false });
         return true;
       })
       .catch(err => {
-          const y = err.response.data.errors;
-          const x = Object.keys(y)[0]
-          Toast.show({
-            text: err.response.data.errors[x][0],
-            duration: 3000,
-          })
+        const y = err.response.data.errors;
+        const x = Object.keys(y)[0];
+        this.setState({loading: false});
+        Toast.show({
+          text: err.response.data.errors[x][0],
+          duration: 3000,
+        })
+      })
+  }
+
+  logout = () => {
+    this.setState({ loading: true });
+    Axios.defaults.headers['Authorization'] = `Bearer ${this.state.user.token}`;
+    Axios.post('auth/logout')
+      .then(() => {
+        AsyncStorage.removeItem('user');
+        this.setState({ authenticated: false, user: {}, loading: false });
+        return true;
+      })
+      .catch(err => {
+        console.log(err.response);
+        this.setState({ loading: false });
       })
   }
 
   render() {
     const { children } = this.props;
     const { user, loading, authenticated } = this.state
-    const { setUser, setLoading, setAuthenticated, login } = this
+    const { setUser, setLoading, setAuthenticated, login, logout } = this
     return (
       <AuthContext.Provider value={{
         user, setUser,
         loading, setLoading,
         authenticated, setAuthenticated,
-        login
+        login, logout
       }}>
         {children}
       </AuthContext.Provider>

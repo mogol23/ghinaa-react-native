@@ -1,11 +1,10 @@
-import React, { Component, useContext, useEffect } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Login, SecurePage, Register, Splash } from './../../pages'
-const Stack = createStackNavigator();
 import AsyncStorage from '@react-native-community/async-storage';
+import { createStackNavigator } from '@react-navigation/stack';
+import React, { useContext, useEffect } from 'react';
+import { ActivityIndicator, View } from 'react-native';
+import { Login, Register, SecurePage, Splash } from './../../pages';
 import { AuthContext } from './../../provider/AuthProvider';
-import { Text, View } from 'native-base';
-import { Button } from 'react-native';
+const Stack = createStackNavigator();
 
 const AuthStack = () => {
   return (
@@ -20,7 +19,6 @@ const AppStack = () => {
   return (
     <Stack.Navigator initialRouteName="SecurePage" headerMode="none">
       <Stack.Screen name="SecurePage" component={SecurePage} />
-      <Stack.Screen name="Splash" component={Splash} />
     </Stack.Navigator>
   )
 }
@@ -34,20 +32,17 @@ const DefaultStack = () => {
 }
 
 const Router = () => {
-  const { loading, setLoading, user, setUser, authenticated, setAuthenticated } = useContext(AuthContext);
+  const { loading, setLoading, setUser, authenticated, setAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
     cekAuth();
-    // test();
   }, []);
 
   const cekAuth = () => {
-    AsyncStorage.removeItem('user');
     AsyncStorage.getItem('user')
       .then(userString => {
         if (userString) {
           userObject = JSON.parse(userString);
-          // console.log(userObject);
           setUser(userObject);
           setAuthenticated(true);
         }
@@ -59,15 +54,18 @@ const Router = () => {
   }
 
 
-  if(loading) {
-    return (<DefaultStack />)
+  if (loading) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator size="large" />
+      </View>
+    )
   }
-  
+
   return (
-    authenticated ? <AppStack /> : <AuthStack />  
+    authenticated ? <AppStack /> : <AuthStack />
   )
 
 }
 
 export default Router;
-  // {/* <Button title='cek' onPress={ () => { setUser({nama:'test'}) } } /> */}
