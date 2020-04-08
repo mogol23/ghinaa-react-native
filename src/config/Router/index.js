@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useContext, useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { Login, Register, SecurePage, Splash, Home } from './../../pages';
+import { Login, Register, Splash, Home, Profile } from './../../pages';
 import { AuthContext } from './../../provider/AuthProvider';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { Icon } from 'native-base';
@@ -31,7 +31,7 @@ const AppTab = () => {
           ),
         } 
       } />
-      <Tab.Screen name='Register' component={Register} options={
+       <Tab.Screen name='Profile' component={Profile} options={
         { 
           tabBarIcon: ({ color }) => (
             <Icon name='md-settings' type='Ionicons' style={{ fontSize: 26, color: color }} />

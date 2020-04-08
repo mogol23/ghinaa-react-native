@@ -25,7 +25,7 @@ const styles = {
       borderRadius: 10
     },
     logo: {
-      marginTop: 120,
+      marginTop: '30%',
       width: 200, height: 100,
       marginVertical: 10,
       justifyContent: 'flex-end'
