@@ -22,12 +22,23 @@ const styles = {
   }
 }
 
-const NewsListItem = ({ date, month, newsTitle }) => {
+const NewsListItem = ({ date, newsTitle }) => {
+
+  const extractDay = date => {
+    const str = date.split(" ");
+    return str[0];
+  }
+
+  const extractMonth = date => {
+    const str = date.split(" ");
+    return str[1].slice(0, 3);
+  }
+
   return (
     <View style={styles.wrapper.component}>
       <View style={styles.wrapper.date}>
-        <Text style={styles.date.day}>{date}</Text>
-        <Text style={styles.date.month}>{month}</Text>
+        <Text style={styles.date.day}>{extractDay(date)}</Text>
+        <Text style={styles.date.month}>{extractMonth(date)}</Text>
       </View>
       <View style={styles.wrapper.news}>
         <Text style={styles.news.text}>{newsTitle}</Text>

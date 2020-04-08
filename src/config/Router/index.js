@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useContext, useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { Login, Register, Splash, Home, Profile } from './../../pages';
+import { Login, Register, Splash, Home, Profile, NewsRead } from './../../pages';
 import { AuthContext } from './../../provider/AuthProvider';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { Icon } from 'native-base';
@@ -41,11 +41,11 @@ const AppTab = () => {
     </Tab.Navigator>
   );
 }
-
 const AppStack = () => {
   return (
     <Stack.Navigator initialRouteName='AppTab'>
       <Stack.Screen name='AppTab' component={AppTab} options={{ headerShown: false }} />
+      <Stack.Screen name='NewsRead' component={NewsRead} options={({ route }) => ({ title: route.params.title })} />
     </Stack.Navigator>
   )
 }
