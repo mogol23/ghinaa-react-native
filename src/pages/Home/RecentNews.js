@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ScrollView, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, RefreshControl } from 'react-native';
 import { NewsListItem, Button } from '../../components';
 import { Axios } from './../../config';
 import { AuthContext } from '../../provider/AuthProvider';
@@ -8,43 +8,54 @@ import { useNavigation } from '@react-navigation/native';
 
 const styles = {
   wrapper: {
-    components: { backgroundColor: 'transparent', width: '90%', maxHeight: '70%', flexWrap: 'nowrap' }
+    components: { backgroundColor: 'transparent', width: '90%', maxHeight: '60%', flexWrap: 'nowrap' }
   },
   title: { fontSize: 20, marginBottom: 10, textTransform: 'uppercase' }
 }
+
 
 const RecentNews = () => {
   const navigation = useNavigation();
   const { user } = useContext(AuthContext);
   const [news, setNews] = useState({});
+  const [refreshing, setRefreshing] = React.useState(false);
   Axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
-  
+
   useEffect(() => {
     getNews();
-  }, [])
-  
+  }, []);
+
   const ReadNews = (news_id, title) => {
-    navigation.navigate('NewsRead', { title: title, news_id: news_id})
+    navigation.navigate('NewsRead', { title: title, news_id: news_id })
   }
-  
+
   const getNews = () => {
-    Axios.get('berita/role/3')
-    .then(res => {
-      setNews(res.data);
-    })
-    .catch(err => {
-      console.error(err.response)
-    })
+    Axios.get('berita')
+      .then(res => {
+        setNews(res.data);
+        setRefreshing(false);
+      })
+      .catch(err => {
+        console.log(err.response);
+        setRefreshing(false)
+      })
   }
-  
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    getNews();
+  }, [refreshing]);
+
   return (
-    <ScrollView style={styles.wrapper.components}>
-      <Text style={styles.title}>Recent News</Text>
+    <ScrollView style={styles.wrapper.components} showsVerticalScrollIndicator={false}
+      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+    >
+      <Text style={styles.title}>Kabar baru</Text>
       {
         Object.keys(news).map(key => {
-          return(
+          return (
             <TouchableOpacity onPress={() => { ReadNews(news[key]['id'], news[key]['judul']) }}>
-              <NewsListItem date='23 Januari 2020' newsTitle={news[key]['judul']} />
+              <NewsListItem date={news[key]['created_at']} newsTitle={news[key]['judul']} />
             </TouchableOpacity>
           )
         })

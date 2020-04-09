@@ -7,10 +7,11 @@ class NewsRead extends Component {
   static contextType = AuthContext;
 
   render() {
+    const {news_id} = this.props.route.params;
     return (
       <WebView
         startInLoadingState={true}
-        source={{ uri: 'https://github.com/react-native-community/react-native-webview/blob/master/docs/Reference.md' }}
+        source={{ uri: 'http://180.222.216.66:8080/berita/'+news_id }}
       />
     );
   }

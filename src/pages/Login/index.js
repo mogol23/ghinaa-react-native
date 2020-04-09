@@ -62,8 +62,8 @@ export default class Login extends Component {
             <Text style={styles.logo.text}>Dalwa Bangil</Text>
           </View>
           <View style={styles.wrapper.form}>
-            <TextInput iconName='email' iconType='Entypo' placeholder='Email' onChange={value => { this.setState({ email: value }) }} />
-            <TextInput iconName='vpn-key' iconType='MaterialIcons' placeholder='Kata sandi' onChange={value => { this.setState({ password: value }) }} />
+            <TextInput iconName='email' iconType='Entypo' placeholder='Email' autoCapitalize='none' onChangeText={value => { this.setState({ email: value }) }} />
+            <TextInput iconName='vpn-key' iconType='MaterialIcons' placeholder='Kata sandi' autoCapitalize='none' secureTextEntry={true} onChangeText={value => { this.setState({ password: value }) }} />
             <Button text='Masuk' onPress={() => login(this.state.email, this.state.password)} />
           </View>
           <ActionButton caption='Belum punya akun?' title='Daftar' onPress={() => navigation.navigate('Register')} />

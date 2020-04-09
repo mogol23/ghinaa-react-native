@@ -14,7 +14,6 @@ const styles = {
 const Dropdown = ({ iconName, iconType, selectedValue, onValueChange, list, placeholder }) => {
   return (
     <Item last style={styles.wrapper}>
-      <Icon name={iconName} type={iconType} />
       <Picker
         selectedValue={selectedValue}
         style={{ flex: 1 }}
@@ -28,6 +27,7 @@ const Dropdown = ({ iconName, iconType, selectedValue, onValueChange, list, plac
           })
         }
       </Picker>
+      <Icon name={iconName} type={iconType} />
     </Item>
   );
 }

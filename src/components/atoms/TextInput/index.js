@@ -1,7 +1,7 @@
-import React from 'react';
 import { Icon, Input, Item } from 'native-base';
+import React from 'react';
 
-const TextInput = ({ iconName, iconType, placeholder, onChange }) => {
+const TextInput = ({ iconName, iconType, ...props }) => {
   const styles = {
     item: {
       backgroundColor: 'white',
@@ -12,8 +12,8 @@ const TextInput = ({ iconName, iconType, placeholder, onChange }) => {
   }
   return (
     <Item last style={styles.item}>
+      <Input {...props} />
       <Icon active name={iconName} type={iconType} />
-      <Input placeholder={placeholder} onChangeText={onChange} />
     </Item>
   )
 }
