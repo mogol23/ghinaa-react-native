@@ -31,18 +31,19 @@ const TextInput = ({ label, ...props }) => {
 
 export default class FormAlumni extends Component {
   static contextType = AuthContext;
-  state = { tahun_lulus: '', jenjang_terakhir: '', jenjang_pendidikan: {} }
+  state = { tahun_lulus: '', jenjang_terakhir: 2, jenjang_pendidikan: {}, loaded: false }
 
   componentDidMount() {
-    this.getProfile();
     this.getJenjangPendidikan();
+    // this.getProfile();
   }
 
   getProfile = () => {
     const profiles = this.context.user.profil;
+    console.log(profiles, this.state.jenjang_terakhir)
     profiles.map((v, i) => {
       if (v.role_id == 4) {
-        if(v.profilable != null){
+        if (v.profilable != null) {
           this.setState({
             tahun_lulus: v.profilable.tahun_lulus,
             jenjang_terakhir: v.profilable.jenjang_terakhir,
@@ -52,31 +53,31 @@ export default class FormAlumni extends Component {
     })
   }
 
-  getJenjangPendidikan = () => {
-    Axios.get('ref/profil/jenjangpendidikan')
-      .then(res => {
-        // console.log(res);
-        const data = res.data;
-        this.setState({ jenjang_pendidikan: data })
+  getJenjangPendidikan = async () => {
+
+    try {
+      const res = await Axios.get('ref/profil/jenjangpendidikan');
+      const data = res.data;
+      this.setState({ jenjang_pendidikan: data })
+      this.getProfile();
+      this.setState({ loaded: true });
+    } catch (error) {
+      Toast.show({
+        position: 'bottom',
+        type: 'danger',
+        duration: 3000,
+        text: 'Tidak dapat mengambil data dari server'
       })
-      .catch(err => {
-        console.log(err)
-        Toast.show({
-          position: 'bottom',
-          type: 'danger',
-          duration: 3000,
-          text: 'Tidak dapat mengambil data dari server'
-        })
-      })
+    }
   }
 
   saveAlumni = () => {
-    this.context.setLoading(true)
+    this.context.setLoading(false)
     const data = {
       tahun_lulus: this.state.tahun_lulus,
       jenjang_terakhir: this.state.jenjang_terakhir
     };
-    
+
     Axios.defaults.headers.common['Authorization'] = `Bearer ${this.context.user.token}`;
     Axios.post('alumni', data)
       .then(res => {
@@ -105,7 +106,7 @@ export default class FormAlumni extends Component {
     return (
       <View style={styles.wrapper.component}>
         <TextInput label="Tahun Lulus" keyboardType={'numeric'} value={`${this.state.tahun_lulus}`} onChangeText={value => this.setState({ tahun_lulus: value })} />
-        <Dropdown placeholder='Jenjang Terakhir' list={this.state.jenjang_pendidikan} onValueChange={value => { this.setState({ jenjang_terakhir: value }) }} selectedValue={this.state.jenjang_terakhir} />
+        {this.state.loaded ? <Dropdown placeholder='Jenjang Terakhir' list={this.state.jenjang_pendidikan} onValueChange={value => { this.setState({ jenjang_terakhir: value }) }} selectedValue={`${this.state.jenjang_terakhir}`} /> : null}
         <Button text='Simpan' onPress={() => { this.saveAlumni() }} />
       </View>
     );

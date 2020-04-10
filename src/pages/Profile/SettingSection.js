@@ -4,7 +4,6 @@ import { Text } from 'react-native';
 import { AuthContext } from '../../provider/AuthProvider';
 import { useNavigation } from '@react-navigation/native';
 
-
 const SettingSection = () => {
   const navigation = useNavigation();
   const { logout } = useContext(AuthContext);
@@ -18,9 +17,9 @@ const SettingSection = () => {
           <Icon active name="arrow-forward" />
         </Right>
       </CardItem>
-      <CardItem button>
+      <CardItem button onPress={() => { navigation.navigate('ChangePassword', {title: 'Ganti Kata sandi'} ) }}>
         <Left>
-          <Text>Ganti Password</Text>
+          <Text>Ganti kata sandi</Text>
         </Left>
         <Right>
           <Icon active name="arrow-forward" />

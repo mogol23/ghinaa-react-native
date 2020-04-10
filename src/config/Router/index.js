@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Icon } from 'native-base';
 import React, { useContext, useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { Home, Login, NewsRead, Profile, ProfileUpdate, Register } from './../../pages';
+import { Home, Login, NewsRead, Profile, ProfileUpdate, Register, ChangePassword } from './../../pages';
 import { AuthContext } from './../../provider/AuthProvider';
 
 const Stack = createStackNavigator();
@@ -47,6 +47,7 @@ const AppStack = () => {
       <Stack.Screen name='AppTab' component={AppTab} options={{ headerShown: false }} />
       <Stack.Screen name='NewsRead' component={NewsRead} options={({ route }) => ({ title: route.params.title })} />
       <Stack.Screen name='ProfileUpdate' component={ProfileUpdate} options={({ route }) => ({ title: route.params.title })} />
+      <Stack.Screen name='ChangePassword' component={ChangePassword} options={({ route }) => ({ title: route.params.title })} />
     </Stack.Navigator>
   )
 }

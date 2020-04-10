@@ -21,7 +21,7 @@ export default class AuthProvider extends Component {
 
   login = async (email, password) => {
 
-    this.setState({ loading: true });
+    this.setState({ loading: false });
     const credentials = {
       email: email,
       password: password,
@@ -31,12 +31,10 @@ export default class AuthProvider extends Component {
     try {
       const res = await Axios.post('auth/login', credentials)
       const response = res.data;
-      await AsyncStorage.setItem('user', JSON.stringify(response));
-      this.setState({ authenticated: true, user: response });
-      setTimeout(() => {
-        this.setState({ loading: false });
-      }, 1000);
-      return true;
+      await this.setState({ user: response });
+      AsyncStorage.setItem('user', JSON.stringify(response));
+      if(response) this.setState({ loading: false, authenticated: true, });
+      console.log(response);
     } catch (err) {
       const y = err.response.data.errors;
       const x = Object.keys(y)[0];
@@ -46,6 +44,8 @@ export default class AuthProvider extends Component {
         duration: 3000,
       })
     }
+
+
   }
 
   logout = () => {

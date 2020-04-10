@@ -29,17 +29,17 @@ const RecentNews = () => {
   }, []);
   
   
-  const getNews = () => {
-    Axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
-    Axios.get('berita')
-      .then(res => {
-        setNews(res.data);
-        setRefreshing(false);
-      })
-      .catch(err => {
-        console.log(err.response);
-        setRefreshing(false)
-      })
+  const getNews = async() => {
+    Axios.defaults.headers['Authorization'] = `Bearer ${user.token}`;
+
+    try {
+      const res = await Axios.get('berita')
+      setNews(res.data);
+      setRefreshing(false);
+    } catch (err) { 
+      console.log(err.response);
+      setRefreshing(false)
+    }
   }
 
   const onRefresh = React.useCallback(() => {
