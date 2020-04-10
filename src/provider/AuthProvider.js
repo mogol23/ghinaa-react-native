@@ -5,7 +5,7 @@ import { Axios } from '../config';
 export const AuthContext = createContext();
 
 export default class AuthProvider extends Component {
-  state = { loading: true, authenticated: false, user: {} }
+  state = { loading: true, authenticated: false, user: [] }
 
   setUser = user => {
     this.setState(prevState => ({ user }));
@@ -19,7 +19,7 @@ export default class AuthProvider extends Component {
     this.setState(prevState => ({ authenticated }));
   }
 
-  login = (email, password) => {
+  login = async (email, password) => {
 
     this.setState({ loading: true });
     const credentials = {
@@ -28,22 +28,24 @@ export default class AuthProvider extends Component {
       device_name: 'mobile'
     }
 
-    Axios.post('auth/login', credentials)
-      .then(res => {
-        const response = res.data;
-        AsyncStorage.setItem('user', JSON.stringify(response));
-        this.setState({ authenticated: true, user: response, loading: false });
-        return true;
+    try {
+      const res = await Axios.post('auth/login', credentials)
+      const response = res.data;
+      await AsyncStorage.setItem('user', JSON.stringify(response));
+      this.setState({ authenticated: true, user: response });
+      setTimeout(() => {
+        this.setState({ loading: false });
+      }, 1000);
+      return true;
+    } catch (err) {
+      const y = err.response.data.errors;
+      const x = Object.keys(y)[0];
+      this.setState({ loading: false });
+      Toast.show({
+        text: err.response.data.errors[x][0],
+        duration: 3000,
       })
-      .catch(err => {
-        const y = err.response.data.errors;
-        const x = Object.keys(y)[0];
-        this.setState({loading: false});
-        Toast.show({
-          text: err.response.data.errors[x][0],
-          duration: 3000,
-        })
-      })
+    }
   }
 
   logout = () => {

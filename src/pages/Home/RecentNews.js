@@ -15,21 +15,22 @@ const styles = {
 
 
 const RecentNews = () => {
+  const [news, setNews] = useState({});
+  const [refreshing, setRefreshing] = React.useState(true);
   const navigation = useNavigation();
   const { user } = useContext(AuthContext);
-  const [news, setNews] = useState({});
-  const [refreshing, setRefreshing] = React.useState(false);
-  Axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
-
-  useEffect(() => {
-    getNews();
-  }, []);
-
+  
   const ReadNews = (news_id, title) => {
     navigation.navigate('NewsRead', { title: title, news_id: news_id })
   }
-
+  
+  useEffect(() => {
+    getNews();
+  }, []);
+  
+  
   const getNews = () => {
+    Axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
     Axios.get('berita')
       .then(res => {
         setNews(res.data);
@@ -52,10 +53,10 @@ const RecentNews = () => {
     >
       <Text style={styles.title}>Kabar baru</Text>
       {
-        Object.keys(news).map(key => {
+        Object.keys(news).map((key, index) => {
           return (
-            <TouchableOpacity onPress={() => { ReadNews(news[key]['id'], news[key]['judul']) }}>
-              <NewsListItem date={news[key]['created_at']} newsTitle={news[key]['judul']} />
+            <TouchableOpacity key={index} onPress={() => { ReadNews(news[key]['id'], news[key]['judul']) }}>
+              <NewsListItem  key={index} date={news[key]['created_at']} newsTitle={news[key]['judul']} />
             </TouchableOpacity>
           )
         })

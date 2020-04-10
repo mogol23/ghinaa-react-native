@@ -47,11 +47,22 @@ const styles = {
 
 export default class Home extends Component {
   static contextType = AuthContext;
-  state = { email: null, password: null };
+
+  componentDidMount() {
+    const { profil, user } = this.context.user;
+    const { navigation } = this.props;
+    if(profil.length == 0) navigation.navigate('ProfileUpdate', { title: 'Lengkapi Profil' })
+    // profil.map(v => {
+    //   if (v.role_id != user.role_id && v.profilable == null ) {
+    //     navigation.navigate('ProfileUpdate', { title: 'Lengkapi Profil' })
+    //   } else if (v.role_id == user.role_id && v.profilable == null ) {
+    //     navigation.navigate('ProfileUpdate', { title: 'Lengkapi Profil' })
+    //   }
+    // })
+  }
 
   render() {
-    const { login } = this.context;
-    const { navigation } = this.props;
+    
     return (
       <View style={styles.wrapper.page}>
         <Image source={Background} style={styles.wrapper.background} />
