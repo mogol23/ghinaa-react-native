@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dimensions, Image, View } from 'react-native';
+import { Dimensions, Image, View, ScrollView } from 'react-native';
 import { Background } from '../../assets';
 import { AuthContext } from '../../provider/AuthProvider';
 import { colors } from '../../utils';
@@ -37,14 +37,16 @@ export default class Profile extends Component {
     const { user } = this.context;
     const { navigation } = this.props;
     return (
-      <View style={styles.wrapper.page}>
-        <Image source={Background} style={styles.wrapper.background} />
-        <Logo />
-        <View style={{ width: '90%', flex: 1, marginTop: 30 }}>
-          <ProfileSection />
-          <SettingSection />
+      <ScrollView>
+        <View style={styles.wrapper.page}>
+          <Image source={Background} style={styles.wrapper.background} />
+          <Logo />
+          <View style={{ width: '90%', flex: 1, marginTop: 30 }}>
+            <ProfileSection />
+            <SettingSection />
+          </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

@@ -106,7 +106,7 @@ export default class Register extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper.page}>
           <Image source={Background} style={styles.wrapper.background} />
           <Logo />

@@ -4,11 +4,12 @@ import { NewsListItem, Button } from '../../components';
 import { Axios } from './../../config';
 import { AuthContext } from '../../provider/AuthProvider';
 import { useNavigation } from '@react-navigation/native';
+import { View } from 'native-base';
 
 
 const styles = {
   wrapper: {
-    components: { backgroundColor: 'transparent', width: '90%', maxHeight: '60%', flexWrap: 'nowrap' }
+    components: { backgroundColor: 'transparent', width: '90%', flexWrap: 'nowrap' }
   },
   title: { fontSize: 20, marginBottom: 10, textTransform: 'uppercase' }
 }
@@ -48,9 +49,7 @@ const RecentNews = () => {
   }, [refreshing]);
 
   return (
-    <ScrollView style={styles.wrapper.components} showsVerticalScrollIndicator={false}
-      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-    >
+    <View style={styles.wrapper.components}>
       <Text style={styles.title}>Kabar baru</Text>
       {
         Object.keys(news).map((key, index) => {
@@ -61,7 +60,7 @@ const RecentNews = () => {
           )
         })
       }
-    </ScrollView>
+    </View>
   )
 }
 

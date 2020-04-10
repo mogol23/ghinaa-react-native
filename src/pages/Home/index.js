@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dimensions, Image, Text, View } from 'react-native';
+import { Dimensions, Image, Text, View, RefreshControl, ScrollView } from 'react-native';
 import { Background, Logo } from '../../assets';
 import { AuthContext } from '../../provider/AuthProvider';
 import { colors } from '../../utils';
@@ -14,6 +14,7 @@ const styles = {
       backgroundColor: colors.default,
       justifyContent: 'flex-start',
       alignItems: 'center',
+      paddingBottom: '5%'
     },
     background: {
       width: d.width,
@@ -45,13 +46,16 @@ const styles = {
   }
 };
 
+
+
 export default class Home extends Component {
+  state = { refreshing: false }
   static contextType = AuthContext;
 
   componentDidMount() {
     const { profil, user } = this.context.user;
     const { navigation } = this.props;
-    if(profil.length == 0) navigation.navigate('ProfileUpdate', { title: 'Lengkapi Profil' })
+    if (profil.length == 0) navigation.navigate('ProfileUpdate', { title: 'Lengkapi Profil' })
     // profil.map(v => {
     //   if (v.role_id != user.role_id && v.profilable == null ) {
     //     navigation.navigate('ProfileUpdate', { title: 'Lengkapi Profil' })
@@ -60,18 +64,30 @@ export default class Home extends Component {
     //   }
     // })
   }
+  onRefresh = () => {
+    this.setState({ refreshing: true });
+    setTimeout(() => {
+      this.setState({ refreshing: false });
+    }, 1500);
+  }
+
 
   render() {
-    
     return (
-      <View style={styles.wrapper.page}>
-        <Image source={Background} style={styles.wrapper.background} />
-        <View style={styles.wrapper.logo}>
-          <Image style={styles.logo.image} source={Logo} />
-          <Text style={styles.logo.text}>Dalwa Bangil</Text>
+      <ScrollView showsVerticalScrollIndicator={false}
+        refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />}
+      >
+        <View style={styles.wrapper.page}>
+          <Image source={Background} style={styles.wrapper.background} />
+          <View style={styles.wrapper.logo}>
+            <Image style={styles.logo.image} source={Logo} />
+            <Text style={styles.logo.text}>Dalwa Bangil</Text>
+          </View>
+          {!this.state.refreshing &&
+            <RecentNews />
+          }
         </View>
-        <RecentNews />
-      </View>
+      </ScrollView>
     );
   }
 }
