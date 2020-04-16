@@ -1,8 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
+import { Root } from 'native-base';
 import React, { Component } from 'react';
 import { Router } from './config';
 import AuthProvider from './provider/AuthProvider';
-import { Root } from 'native-base';
 
 export default class App extends Component {
   render() {
@@ -10,7 +10,7 @@ export default class App extends Component {
       <Root>
         <NavigationContainer>
           <AuthProvider>
-            <Router/>
+            <Router />
           </AuthProvider>
         </NavigationContainer>
       </Root>

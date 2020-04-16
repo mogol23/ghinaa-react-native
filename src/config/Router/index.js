@@ -21,8 +21,8 @@ const AuthStack = () => {
 
 const AppTab = () => {
   return (
-    <Tab.Navigator initialRouteName='Home' backBehavior='none' inactiveColor='#d8d8d8' activeColor='white'
-      barStyle={{ backgroundColor: '#28ca8f', borderTopColor: '#fede11' }} shifting={true} sceneAnimationEnabled={true}
+    <Tab.Navigator  initialRouteName='Home' backBehavior='none' inactiveColor='#d8d8d8' activeColor='white'
+      barStyle={{ backgroundColor: '#28ca8f' }} shifting={true} sceneAnimationEnabled={true}
     >
       <Tab.Screen name='Home' component={Home} options={
         {
@@ -43,9 +43,9 @@ const AppTab = () => {
 }
 const AppStack = () => {
   return (
-    <Stack.Navigator initialRouteName='AppTab'>
+    <Stack.Navigator initialRouteName='AppTab' headerMode='screen'>
       <Stack.Screen name='AppTab' component={AppTab} options={{ headerShown: false }} />
-      <Stack.Screen name='NewsRead' component={NewsRead} options={({ route }) => ({ title: route.params.title })} />
+      <Stack.Screen name='NewsRead' component={NewsRead} options={{ headerShown: false }} />
       <Stack.Screen name='ProfileUpdate' component={ProfileUpdate} options={({ route }) => ({ title: route.params.title })} />
       <Stack.Screen name='ChangePassword' component={ChangePassword} options={({ route }) => ({ title: route.params.title })} />
     </Stack.Navigator>

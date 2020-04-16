@@ -1,34 +1,20 @@
 import { Toast } from 'native-base';
 import React, { Component } from 'react';
-import { Dimensions, Image, Text, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { Background } from '../../assets';
-import { Button, Dropdown, TextInput, Logo } from '../../components';
-import { colors } from '../../utils';
+import { Dimensions, StyleSheet, View } from 'react-native';
+import { Button, Dropdown, TextInput } from '../../components';
+import Ghinaa from '../../layouts/Ghinaa';
 import { Axios } from './../../config';
 import ActionButton from './ActionButton';
 
 const d = Dimensions.get('window');
 
-const styles = {
+const styles = StyleSheet.create({
   wrapper: {
-    page: {
-      flex: 1,
-      minHeight: d.height - 25,
-      backgroundColor: colors.default,
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-    },
-    background: {
-      width: d.width,
-      height: d.height,
-      position: 'absolute',
-    },
-    form: {
-      width: '70%',
-    },
-  }
-}
+    flex: 1,
+    justifyContent: 'center',
+    marginTop: 20
+  },
+});
 
 export default class Register extends Component {
   constructor(props) {
@@ -106,23 +92,18 @@ export default class Register extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.wrapper.page}>
-          <Image source={Background} style={styles.wrapper.background} />
-          <Logo />
-          <View style={styles.wrapper.form}>
-            {/* <Text>{ this.state.form.nama_lengkap} </Text> */}
-            <TextInput iconName='user' iconType='Entypo' placeholder='Nama lengkap' onChangeText={value => { this.setState({ nama_lengkap: value }) }} />
-            <TextInput iconName='phone' iconType='Entypo' placeholder='No telp' onChangeText={value => { this.setState({ no_telp: value }) }} />
-            <TextInput iconName='email' iconType='Entypo' placeholder='Email' autoCapitalize='none' onChangeText={value => { this.setState({ email: value }) }} />
-            <TextInput iconName='vpn-key' iconType='MaterialIcons' placeholder='Kata sandi' secureTextEntry={true} autoCapitalize='none' onChangeText={value => { this.setState({ password: value }) }} />
-            <TextInput iconName='vpn-key' iconType='MaterialIcons' placeholder='Ulangi kata sandi' secureTextEntry={true} autoCapitalize='none' onChangeText={value => { this.setState({ password_confirmation: value }) }} />
-            <Dropdown list={this.state.role} iconName='folder' iconType='Entypo' placeholder='Daftar sebagai' onValueChange={value => { this.setState({ role_selected: value }) }} selectedValue={this.state.role_selected} />
-            <Button text='Daftar' onPress={() => { this.sumbit_form() }} />
-          </View>
-          <ActionButton caption='Sudah punya akun?' title='Masuk' onPress={() => navigation.navigate('Login')} />
+      <Ghinaa>
+        <View style={styles.wrapper}>
+          <TextInput iconName='user' iconType='Entypo' placeholder='Nama lengkap' onChangeText={value => { this.setState({ nama_lengkap: value }) }} />
+          <TextInput iconName='phone' iconType='Entypo' placeholder='No telp' onChangeText={value => { this.setState({ no_telp: value }) }} />
+          <TextInput iconName='email' iconType='Entypo' placeholder='Email' autoCapitalize='none' onChangeText={value => { this.setState({ email: value }) }} />
+          <TextInput iconName='vpn-key' iconType='MaterialIcons' placeholder='Kata sandi' secureTextEntry={true} autoCapitalize='none' onChangeText={value => { this.setState({ password: value }) }} />
+          <TextInput iconName='vpn-key' iconType='MaterialIcons' placeholder='Ulangi kata sandi' secureTextEntry={true} autoCapitalize='none' onChangeText={value => { this.setState({ password_confirmation: value }) }} />
+          <Dropdown list={this.state.role} iconName='folder' iconType='Entypo' placeholder='Daftar sebagai' onValueChange={value => { this.setState({ role_selected: value }) }} selectedValue={this.state.role_selected} />
+          <Button text='Daftar' onPress={() => { this.sumbit_form() }} />
         </View>
-      </ScrollView>
+        <ActionButton caption='Sudah punya akun?' title='Masuk' onPress={() => navigation.navigate('Login')} />
+      </Ghinaa>
     )
   }
 }

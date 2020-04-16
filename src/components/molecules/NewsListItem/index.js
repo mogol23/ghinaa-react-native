@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 const styles = {
   wrapper: {
@@ -22,7 +22,7 @@ const styles = {
   }
 }
 
-const NewsListItem = ({ date, newsTitle }) => {
+const NewsListItem = ({ date, newsTitle, onPress }) => {
 
   const extractDay = date => {
     const str = date.split(" ");
@@ -35,15 +35,17 @@ const NewsListItem = ({ date, newsTitle }) => {
   }
 
   return (
-    <View style={styles.wrapper.component}>
-      <View style={styles.wrapper.date}>
-        <Text style={styles.date.day}>{extractDay(date)}</Text>
-        <Text style={styles.date.month}>{extractMonth(date)}</Text>
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.wrapper.component}>
+        <View style={styles.wrapper.date}>
+          <Text style={styles.date.day}>{extractDay(date)}</Text>
+          <Text style={styles.date.month}>{extractMonth(date)}</Text>
+        </View>
+        <View style={styles.wrapper.news}>
+          <Text style={styles.news.text}>{newsTitle}</Text>
+        </View>
       </View>
-      <View style={styles.wrapper.news}>
-        <Text style={styles.news.text}>{newsTitle}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 

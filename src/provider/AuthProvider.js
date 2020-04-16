@@ -33,8 +33,7 @@ export default class AuthProvider extends Component {
       const response = res.data;
       await this.setState({ user: response });
       AsyncStorage.setItem('user', JSON.stringify(response));
-      if(response) this.setState({ loading: false, authenticated: true, });
-      console.log(response);
+      if (response) this.setState({ loading: false, authenticated: true, });
     } catch (err) {
       const y = err.response.data.errors;
       const x = Object.keys(y)[0];
@@ -63,16 +62,25 @@ export default class AuthProvider extends Component {
       })
   }
 
+  checkAlive = async () => {
+    try {
+      const res = await Axios.get('check-alive');
+    } catch (error) {
+      AsyncStorage.removeItem('user');
+      this.setState({ authenticated: false, user: {}, loading: false });
+    }
+  }
+
   render() {
     const { children } = this.props;
     const { user, loading, authenticated } = this.state
-    const { setUser, setLoading, setAuthenticated, login, logout } = this
+    const { setUser, setLoading, setAuthenticated, login, logout, checkAlive } = this
     return (
       <AuthContext.Provider value={{
         user, setUser,
         loading, setLoading,
         authenticated, setAuthenticated,
-        login, logout
+        login, logout, checkAlive
       }}>
         {children}
       </AuthContext.Provider>

@@ -8,8 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "buildDebug": "(cd android && ./gradlew clean && ./gradlew assembleDebug)",
-    "buildRelease": "(cd android && ./gradlew clean && ./gradlew assembleRelease)",
+    "buildDebug": "(cd android && ./gradlew clean && ./gradlew bundleDebug)",
+    "buildRelease": "(cd android && ./gradlew clean && ./gradlew bundleRelease)",
     "sign": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore dcash.keystore android/app/build/outputs/apk/app-release-unsigned.apk alias_name",
     "zip": "~/Library/Android/Sdk/build-tools/23.0.1/zipalign -v 4 android/app/build/outputs/apk/app-release-unsigned.apk android/app/build/outputs/apk/app-release.apk"
   },
@@ -25,6 +25,7 @@
     "react": "16.11.0",
     "react-native": "0.62.1",
     "react-native-gesture-handler": "^1.6.1",
+    "react-native-keyboard-aware-scroll-view": "^0.9.1",
     "react-native-paper": "^3.7.0",
     "react-native-reanimated": "^1.7.1",
     "react-native-safe-area-context": "^0.7.3",
