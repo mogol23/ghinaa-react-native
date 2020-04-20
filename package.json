@@ -7,11 +7,31 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "buildDebug": "(cd android && ./gradlew clean && ./gradlew bundleDebug)",
+    "buildRelease": "(cd android && ./gradlew clean && ./gradlew bundleRelease)",
+    "sign": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore dcash.keystore android/app/build/outputs/apk/app-release-unsigned.apk alias_name",
+    "zip": "~/Library/Android/Sdk/build-tools/23.0.1/zipalign -v 4 android/app/build/outputs/apk/app-release-unsigned.apk android/app/build/outputs/apk/app-release.apk"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.9.0",
+    "@react-native-community/masked-view": "^0.1.7",
+    "@react-navigation/bottom-tabs": "^5.2.5",
+    "@react-navigation/material-bottom-tabs": "^5.1.7",
+    "@react-navigation/native": "^5.1.4",
+    "@react-navigation/stack": "^5.2.9",
+    "axios": "^0.19.2",
+    "native-base": "^2.13.12",
     "react": "16.11.0",
-    "react-native": "0.62.1"
+    "react-native": "0.62.1",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-keyboard-aware-scroll-view": "^0.9.1",
+    "react-native-paper": "^3.7.0",
+    "react-native-reanimated": "^1.7.1",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-screens": "^2.4.0",
+    "react-native-vector-icons": "^6.6.0",
+    "react-native-webview": "^9.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
