@@ -61,7 +61,6 @@ export default class FormOrtu extends Component {
           const telp = v.profilable.telp_santri;
           telp.map((v, i) => {
             this.handleNoSantri(v.no_telp, i);
-            // this.state.no_telp.push(v.no_telp);
           })
         }
       }
@@ -95,13 +94,10 @@ export default class FormOrtu extends Component {
     }
   }
 
-  handleNoSantri = (value, key) => {
-    this.setState(prevState => ({
-      no_telp: {
-        ...prevState.no_telp,
-        [key]: value
-      }
-    }))
+  handleNoSantri = (value, index) => {
+    var telp = this.state.no_telp;
+    telp[index] = value;
+    this.setState({ no_telp: telp });
   }
 
   render() {
