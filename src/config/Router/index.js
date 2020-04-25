@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Icon } from 'native-base';
 import React, { useContext, useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { Home, Login, NewsRead, Profile, ProfileUpdate, Register, ChangePassword } from './../../pages';
+import { ChangePassword, Home, Login, NewsRead, Profile, ProfileUpdate, Register, ForgotPassword } from './../../pages';
 import { AuthContext } from './../../provider/AuthProvider';
 
 const Stack = createStackNavigator();
@@ -15,13 +15,14 @@ const AuthStack = () => {
     <Stack.Navigator initialRouteName='Login' headerMode='none'>
       <Stack.Screen name='Login' component={Login} />
       <Stack.Screen name='Register' component={Register} />
+      <Stack.Screen name='ForgotPassword' component={ForgotPassword} />
     </Stack.Navigator>
   )
 }
 
 const AppTab = () => {
   return (
-    <Tab.Navigator  initialRouteName='Home' backBehavior='none' inactiveColor='#d8d8d8' activeColor='white'
+    <Tab.Navigator initialRouteName='Home' backBehavior='none' inactiveColor='#d8d8d8' activeColor='white'
       barStyle={{ backgroundColor: '#28ca8f' }} shifting={true} sceneAnimationEnabled={true}
     >
       <Tab.Screen name='Home' component={Home} options={

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { Button } from './../../components';
+import { Button } from '../../atoms';
 
 const ActionButton = ({ title, caption, onPress }) => {
   return (

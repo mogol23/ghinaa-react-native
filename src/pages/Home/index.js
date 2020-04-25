@@ -7,9 +7,11 @@ export default class Home extends Component {
   static contextType = AuthContext;
 
   componentDidMount() {
-    const { profil } = this.context.user;
+    const { profil, user } = this.context.user;
     const { navigation } = this.props;
-    if (profil.length == 0) navigation.navigate('ProfileUpdate', { title: 'Lengkapi Profil' })
+    if( user.role_id != 1) {
+      if (profil.length == 0) navigation.navigate('ProfileUpdate', { title: 'Lengkapi Profil' })
+    }
   }
 
   render() {

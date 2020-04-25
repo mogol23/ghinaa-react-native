@@ -6,9 +6,10 @@ import { useNavigation } from '@react-navigation/native';
 
 const SettingSection = () => {
   const navigation = useNavigation();
-  const { logout } = useContext(AuthContext);
+  const { logout, user } = useContext(AuthContext);
   return (
     <Card>
+      {user.user.role_id != 1 && 
       <CardItem button onPress={() => { navigation.navigate('ProfileUpdate', {title: 'Perbarui Profil'} ) }}>
         <Left>
           <Text>Perbarui Profil</Text>
@@ -17,6 +18,7 @@ const SettingSection = () => {
           <Icon active name="arrow-forward" />
         </Right>
       </CardItem>
+      }
       <CardItem button onPress={() => { navigation.navigate('ChangePassword', {title: 'Ganti Kata sandi'} ) }}>
         <Left>
           <Text>Ganti kata sandi</Text>

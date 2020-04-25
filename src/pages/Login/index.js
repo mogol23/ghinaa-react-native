@@ -26,6 +26,7 @@ export default class Login extends Component {
           <TextInput iconName='vpn-key' iconType='MaterialIcons' placeholder='Kata sandi' autoCapitalize='none' secureTextEntry={true} onChangeText={value => { this.setState({ password: value }) }} />
           <Button text='Masuk' onPress={() => login(this.state.email, this.state.password)} />
         </View>
+        <ActionButton caption='Lupa kata sandi?' title='Ganti kata sandi' onPress={() => navigation.navigate('ForgotPassword')} />
         <ActionButton caption='Belum punya akun?' title='Daftar' onPress={() => navigation.navigate('Register')} />
       </Ghinaa>
     );
