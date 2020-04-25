@@ -23,7 +23,7 @@ class NewsRead extends Component {
         <Text style={{ fontSize: 20, fontWeight: 'bold' }}> {route.params.title} </Text>
         <WebView style={{ backgroundColor: 'transparent' }} overScrollMode='never' bounces={false}
           showsVerticalScrollIndicator={false} containerStyle={{ flex: 1, marginBottom: -30 }}
-          source={{ uri: 'http://180.222.216.66:8080/berita/' + news_id }}
+          source={{ uri: 'https://www.dalwa.ghinaa-app.com:1080/berita/' + news_id }}
         />
         <ButtonBack text='Kembali' onPress={() => { navigation.goBack() }} style={styles.back} />
       </Ghinaa>
