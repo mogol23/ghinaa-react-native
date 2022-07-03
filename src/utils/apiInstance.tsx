@@ -19,7 +19,7 @@ export interface successResponse {
 
 export interface response extends errorResponse, successResponse {}
 
-const baseURL = config.fidly_url;
+const baseURL = config.api_url;
 
 const AXIOS = axios.create({
   baseURL,
