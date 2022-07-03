@@ -1,25 +1,14 @@
-import {
-  Alert,
-  FlatList,
-  HStack,
-  Icon,
-  IconButton,
-  Input,
-  Stack,
-  Text,
-} from 'native-base';
-import React, {PureComponent} from 'react';
-import BarcodeMask from 'react-native-barcode-mask';
-import {RNCamera} from 'react-native-camera';
+import { FlatList, Icon, IconButton, Input, Stack } from 'native-base';
+import React, { PureComponent } from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {connect} from 'react-redux';
-import {auth as authApi, conversion as conversionApi} from '../../api';
-import {isIphoneX, qrcode} from '../../helpers';
-import {default as conversionActions} from '../../redux/actions/conversion';
+import { connect } from 'react-redux';
+import { auth as authApi, conversion as conversionApi } from '../../api';
+import { isIphoneX, qrcode } from '../../helpers';
+import { default as conversionActions } from '../../redux/actions/conversion';
 import dateTime from '../../utils/dateTime';
-import {AppBar, TransactionListItem} from './../../components';
+import { AppBar, TransactionListItem } from './../../components';
 import Loading from './loading';
 
 class index extends PureComponent {
@@ -37,8 +26,8 @@ class index extends PureComponent {
     }));
   }
 
-  barcodeRecognized({data}) {
-    const {isLoggedIn} = this.props;
+  barcodeRecognized({ data }) {
+    const { isLoggedIn } = this.props;
     if (!isLoggedIn) {
       return this.signin(data);
     }
@@ -49,15 +38,15 @@ class index extends PureComponent {
   }
 
   async signin(data) {
-    this.setState({submit: true});
+    this.setState({ submit: true });
     const decryptedData = qrcode.decryptQrcode(data);
     const extractData = qrcode.extractTokenIdentifier(decryptedData);
     await authApi.qrLogin(extractData.identifier, extractData.token);
-    this.setState({submit: false});
+    this.setState({ submit: false });
   }
 
   async handleConversion(code) {
-    this.setState({submit: true});
+    this.setState({ submit: true });
 
     if (code.toLocaleLowerCase().includes('demo')) {
       return this.demoConversion(code);
@@ -67,9 +56,9 @@ class index extends PureComponent {
   }
 
   async demoConversion(code) {
-    this.setState({submit: true});
+    this.setState({ submit: true });
 
-    const {navigation} = this.props;
+    const { navigation } = this.props;
     try {
       const response = await conversionApi.confirmDemoConversion(code);
       navigation.navigate('Success', {
@@ -78,19 +67,19 @@ class index extends PureComponent {
       });
     } catch (error) {
     } finally {
-      this.setState({submit: false});
+      this.setState({ submit: false });
     }
   }
 
   async submitConversion(code) {
-    const {navigation} = this.props;
-    this.setState({submit: true});
+    const { navigation } = this.props;
+    this.setState({ submit: true });
 
     try {
       const response = await conversionApi.confirm(code);
       const data = response.data;
 
-      if (data.success == true) {
+      if (data.success === true) {
         conversionApi.removeConversionRequest(code);
       }
 
@@ -101,22 +90,22 @@ class index extends PureComponent {
     } catch (error) {
       console.error(error);
     } finally {
-      this.setState({submit: false});
+      this.setState({ submit: false });
     }
   }
 
   componentDidMount() {
     SplashScreen.hide();
 
-    const {navigation} = this.props;
+    const { navigation } = this.props;
     navigation.addListener('focus', () => {
       conversionActions.resetState();
     });
   }
 
   render() {
-    const {submit, mode} = this.state;
-    const {isLoggedIn, conversion} = this.props;
+    const { submit, mode } = this.state;
+    const { isLoggedIn, conversion } = this.props;
     if (submit) {
       return (
         <Stack flex="1" bg="white">
@@ -129,37 +118,7 @@ class index extends PureComponent {
     return (
       <Stack flex="1" bg="white">
         <AppBar />
-        {mode == 'camera' && (
-          <RNCamera
-            ref={ref => {
-              this.camera = ref;
-            }}
-            captureAudio={false}
-            style={{
-              flex: 1,
-            }}
-            onBarCodeRead={this.barcodeRecognized.bind(this)}>
-            {!isLoggedIn && (
-              <Alert m={2} zIndex={99} status="warning" colorScheme="warning">
-                <HStack space={2} alignItems="center">
-                  <Text
-                    fontSize="md"
-                    fontWeight="medium"
-                    textAlign="left"
-                    color="coolGray.800">
-                    {
-                      "Vous n'êtes pas connecté à une caisse,\n veuillez scanner un code de caisse"
-                    }
-                  </Text>
-                  <Alert.Icon size={'md'} />
-                </HStack>
-              </Alert>
-            )}
-            <BarcodeMask />
-          </RNCamera>
-        )}
-
-        {mode == 'input' && (
+        {mode === 'input' && (
           <>
             <Input
               onChangeText={conversionApi.findConversionRequest.bind(this)}
@@ -182,7 +141,7 @@ class index extends PureComponent {
             <FlatList
               data={conversion.search_results}
               keyExtractor={item => item._id}
-              renderItem={({item}) => {
+              renderItem={({ item }) => {
                 const amount = `${item.base_amount} ${item.base} (${item.quote_amount} ${item.quote})`;
                 const time = dateTime(item.createdAt);
                 return (
@@ -221,7 +180,7 @@ class index extends PureComponent {
   }
 }
 
-function mapStateToProps({user: {logged_in: isLoggedIn}, conversion}) {
+function mapStateToProps({ user: { logged_in: isLoggedIn }, conversion }) {
   return {
     isLoggedIn,
     conversion,

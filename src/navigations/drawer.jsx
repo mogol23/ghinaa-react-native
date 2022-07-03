@@ -1,17 +1,18 @@
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import * as React from 'react';
-import {TransactionHistory, Scanner, Contact, ChangePassword} from '../screens';
-import {AppDrawer} from '../components';
-import {connect} from 'react-redux';
+import { TransactionHistory, Scanner, Contact, ChangePassword } from '../screens';
+import { AppDrawer } from '../components';
+import { connect } from 'react-redux';
 import transactionStack from './transaction-stack';
 
 const Drawer = createDrawerNavigator();
 
-function drawer({isLoggedIn}) {
+function drawer({ isLoggedIn }) {
   return (
     <Drawer.Navigator
+      useLegacyImplementation
       initialRouteName="Scanner"
-      screenOptions={{headerShown: false}}
+      screenOptions={{ headerShown: false }}
       drawerContent={props => <AppDrawer {...props} />}>
       <Drawer.Screen
         name="Scanner"
@@ -45,7 +46,7 @@ function drawer({isLoggedIn}) {
   );
 }
 
-function mapStateToProps({user: {logged_in}}) {
+function mapStateToProps({ user: { logged_in } }) {
   return {
     isLoggedIn: logged_in,
   };
