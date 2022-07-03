@@ -1,6 +1,11 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import * as React from 'react';
-import { TransactionHistory, Scanner, Contact, ChangePassword } from '../screens';
+import {
+  TransactionHistory,
+  Scanner,
+  Contact,
+  ChangePassword,
+} from '../screens';
 import { AppDrawer } from '../components';
 import { connect } from 'react-redux';
 import transactionStack from './transaction-stack';

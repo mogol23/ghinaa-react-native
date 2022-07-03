@@ -1,7 +1,7 @@
-import {toast} from '../utils';
+import { toast } from '../utils';
 import user from '../redux/actions/user';
-import {auth as authService} from '../services';
-import {setAuthToken} from '../utils/fidlyApiInstance';
+import { auth as authService } from '../services';
+import { setAuthToken } from '../utils/fidlyApiInstance';
 import transfer from '../redux/actions/transfer';
 
 async function login(email: String, password: String) {

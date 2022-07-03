@@ -1,4 +1,4 @@
-import {Dimensions, Platform} from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 
 export default function isIphoneX() {
   const dim = Dimensions.get('window');

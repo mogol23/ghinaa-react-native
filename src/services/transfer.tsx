@@ -1,5 +1,5 @@
-import {AxiosResponse} from 'axios';
-import {fidlyApiInstance, digitalBrokerApiInstance} from '../utils';
+import { AxiosResponse } from 'axios';
+import { fidlyApiInstance, digitalBrokerApiInstance } from '../utils';
 
 function send(
   code: String,

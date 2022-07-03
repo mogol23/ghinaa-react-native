@@ -1,8 +1,8 @@
-import axios, {AxiosResponse} from 'axios';
-import {toast} from '.';
-import {config} from './../constans';
+import axios, { AxiosResponse } from 'axios';
+import { toast } from '.';
+import { config } from './../constans';
 import redux from './../redux';
-import {auth} from './../api';
+import { auth } from './../api';
 
 export interface errorResponse {
   code: Number;
@@ -61,6 +61,6 @@ function setAuthToken(token: String) {
   AXIOS.defaults.headers.common.Authorization = `Bearer ${token}`;
 }
 
-export {baseURL, AXIOS, setAuthToken};
+export { baseURL, AXIOS, setAuthToken };
 
 export default AXIOS;

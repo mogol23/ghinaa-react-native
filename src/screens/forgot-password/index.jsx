@@ -1,8 +1,8 @@
-import {Button, Center, FormControl, Input, VStack} from 'native-base';
-import React, {PureComponent} from 'react';
-import {View} from 'react-native';
-import {auth} from '../../api';
-import {AppBar} from './../../components';
+import { Button, Center, FormControl, Input, VStack } from 'native-base';
+import React, { PureComponent } from 'react';
+import { View } from 'react-native';
+import { auth } from '../../api';
+import { AppBar } from './../../components';
 
 class index extends PureComponent {
   constructor(props) {
@@ -27,16 +27,16 @@ class index extends PureComponent {
   }
 
   onSubmit() {
-    const {formData} = this.state;
+    const { formData } = this.state;
     auth.resetPassword(formData.email);
   }
 
   render() {
-    const {formData} = this.state;
-    const {navigation} = this.props;
+    const { formData } = this.state;
+    const { navigation } = this.props;
 
     return (
-      <View style={{backgroundColor: 'white', flex: 1}}>
+      <View style={{ backgroundColor: 'white', flex: 1 }}>
         <AppBar />
         <Center>
           <VStack width="90%" mx="3">

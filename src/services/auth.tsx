@@ -1,6 +1,6 @@
-import {deviceInfo} from '../helpers';
-import {fidlyApiInstance} from './../utils';
-import {response} from './../utils/fidlyApiInstance';
+import { deviceInfo } from '../helpers';
+import { fidlyApiInstance } from './../utils';
+import { response } from './../utils/fidlyApiInstance';
 
 function login(email: String, password: String): Promise<response> {
   return fidlyApiInstance.post('api/auth/login/manager', {

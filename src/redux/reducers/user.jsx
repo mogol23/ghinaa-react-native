@@ -1,6 +1,6 @@
-import {reduxAction} from '../../constans';
+import { reduxAction } from '../../constans';
 
-const {USER_FETCH_START, USER_FETCH_END, USER_SET_STATE, USER_RESET_STATE} =
+const { USER_FETCH_START, USER_FETCH_END, USER_SET_STATE, USER_RESET_STATE } =
   reduxAction;
 
 const initialState = {

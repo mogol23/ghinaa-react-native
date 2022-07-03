@@ -12,14 +12,14 @@ import {
   AlertDialog,
   Button,
 } from 'native-base';
-import React, {useState} from 'react';
-import {Linking} from 'react-native';
+import React, { useState } from 'react';
+import { Linking } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {connect} from 'react-redux';
-import {auth} from '../../api';
-import {isIphoneX} from '../../helpers';
+import { connect } from 'react-redux';
+import { auth } from '../../api';
+import { isIphoneX } from '../../helpers';
 
-function CustomDrawerContent({isLoggedIn, ...props}) {
+function CustomDrawerContent({ isLoggedIn, ...props }) {
   const [signoutDialogVisible, setSignoutDialogVisibility] = useState(false);
   const closeSignoutDialog = () => setSignoutDialogVisibility(false);
 
@@ -84,7 +84,7 @@ function CustomDrawerContent({isLoggedIn, ...props}) {
   );
 }
 
-function mapStateToProps({user: {logged_in}}) {
+function mapStateToProps({ user: { logged_in } }) {
   return {
     isLoggedIn: logged_in,
   };

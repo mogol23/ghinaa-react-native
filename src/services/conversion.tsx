@@ -1,9 +1,9 @@
-import {AxiosResponse} from 'axios';
-import {digitalBrokerApiInstance, fidlyApiInstance} from './../utils';
+import { AxiosResponse } from 'axios';
+import { digitalBrokerApiInstance, fidlyApiInstance } from './../utils';
 
 function confirm(
   code: String,
-  data: {code: String; pos: String},
+  data: { code: String; pos: String },
 ): Promise<AxiosResponse> {
   return digitalBrokerApiInstance.post('conversion/confirm/' + code, data);
 }

@@ -1,13 +1,13 @@
 import moment from 'moment';
-import {transfer as transferHelper} from '../helpers';
-import {store} from '../redux';
+import { transfer as transferHelper } from '../helpers';
+import { store } from '../redux';
 import transfer from '../redux/actions/transfer';
-import {conversion as conversionService} from '../services';
+import { conversion as conversionService } from '../services';
 import conversion from './../redux/actions/conversion';
 
 async function confirm(code: String) {
   const {
-    user: {collector},
+    user: { collector },
   } = store.getState();
   return await conversionService.confirm(code, {
     code,
@@ -52,7 +52,7 @@ async function confirmDemoConversion(code: String): Promise<any> {
 
     if (code.toLowerCase().includes('success')) {
       const {
-        transfer: {histories},
+        transfer: { histories },
       } = store.getState();
       const temp = [...histories];
       temp.push({

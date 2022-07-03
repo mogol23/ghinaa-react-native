@@ -1,7 +1,7 @@
-import {reduxAction} from './../../constans';
-import {store} from '../index';
+import { reduxAction } from './../../constans';
+import { store } from '../index';
 
-const {USER_FETCH_START, USER_FETCH_END, USER_SET_STATE, USER_RESET_STATE} =
+const { USER_FETCH_START, USER_FETCH_END, USER_SET_STATE, USER_RESET_STATE } =
   reduxAction;
 
 export function fetchStart() {

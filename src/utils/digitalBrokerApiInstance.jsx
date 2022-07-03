@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {toast} from '.';
-import {config} from './../constans';
-import {store} from './../redux';
-import {auth} from './../api';
+import { toast } from '.';
+import { config } from './../constans';
+import { store } from './../redux';
+import { auth } from './../api';
 
 const baseURL = config.digitalBroker_url;
 
@@ -48,7 +48,7 @@ AXIOS.interceptors.response.use(
 
 AXIOS.interceptors.request.use(request => {
   const {
-    user: {collector, token},
+    user: { collector, token },
   } = store.getState();
 
   collector && (request.headers['X-API-KEY'] = collector.zbApiKey);
@@ -67,6 +67,6 @@ function setApiSecret(value) {
   AXIOS.defaults.headers.common['X-API-SECRET'] = `${value}`;
 }
 
-export {baseURL, AXIOS, setApiKey, setApiSecret};
+export { baseURL, AXIOS, setApiKey, setApiSecret };
 
 export default AXIOS;

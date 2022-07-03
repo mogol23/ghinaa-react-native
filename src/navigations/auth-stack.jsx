@@ -1,6 +1,6 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import {Login, ForgotPassword} from './../screens';
+import { Login, ForgotPassword } from './../screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -9,7 +9,7 @@ const index = () => {
     <Stack.Navigator
       initialRouteName="Login"
       headerMode="screen"
-      screenOptions={{headerShown: false}}>
+      screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
     </Stack.Navigator>

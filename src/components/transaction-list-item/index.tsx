@@ -1,6 +1,14 @@
-import {Flex, HStack, Icon, Pressable, Stack, Text, VStack} from 'native-base';
+import {
+  Flex,
+  HStack,
+  Icon,
+  Pressable,
+  Stack,
+  Text,
+  VStack,
+} from 'native-base';
 import React from 'react';
-import {GestureResponderEvent} from 'react-native';
+import { GestureResponderEvent } from 'react-native';
 import EntypoIcons from 'react-native-vector-icons/Entypo';
 import SimpleLineIcons from 'react-native-vector-icons/EvilIcons';
 

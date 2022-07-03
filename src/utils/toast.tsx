@@ -1,5 +1,5 @@
-import {IAlertProps, IToastProps, Toast as ToastBase} from 'native-base';
-import {ReactNode} from 'react';
+import { IAlertProps, IToastProps, Toast as ToastBase } from 'native-base';
+import { ReactNode } from 'react';
 
 function index(
   type: IAlertProps['status'],

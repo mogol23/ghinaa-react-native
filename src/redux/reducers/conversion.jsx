@@ -1,4 +1,4 @@
-import {reduxAction} from '../../constans';
+import { reduxAction } from '../../constans';
 
 const {
   CONVERSION_FETCH_START,

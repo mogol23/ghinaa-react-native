@@ -1,12 +1,12 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {NativeBaseProvider, StatusBar} from 'native-base';
+import { NavigationContainer } from '@react-navigation/native';
+import { NativeBaseProvider, StatusBar } from 'native-base';
 import React from 'react';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {Provider as ReduxProvider} from 'react-redux';
-import {PersistGate} from 'redux-persist/integration/react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider as ReduxProvider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import Navigation from './navigations';
-import {store, storePersisted} from './redux';
-import {theme} from './utils';
+import { store, storePersisted } from './redux';
+import { theme } from './utils';
 
 export default () => {
   return (

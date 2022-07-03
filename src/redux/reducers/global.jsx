@@ -1,4 +1,4 @@
-import {reduxAction} from '../../constans';
+import { reduxAction } from '../../constans';
 
 const {
   GLOBAL_FETCH_START,

@@ -1,5 +1,5 @@
-import {reduxAction} from '../../constans';
-import {store} from './../index';
+import { reduxAction } from '../../constans';
+import { store } from './../index';
 
 const {
   GLOBAL_FETCH_START,

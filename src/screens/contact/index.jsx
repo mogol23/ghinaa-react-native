@@ -1,6 +1,6 @@
-import {Center, Text} from 'native-base';
-import React, {PureComponent} from 'react';
-import {AppBar} from './../../components';
+import { Center, Text } from 'native-base';
+import React, { PureComponent } from 'react';
+import { AppBar } from './../../components';
 
 class index extends PureComponent {
   constructor(props) {

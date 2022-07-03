@@ -1,9 +1,9 @@
-import {Center, FlatList} from 'native-base';
-import React, {PureComponent} from 'react';
-import {connect} from 'react-redux';
-import {transfer as transferApi} from '../../api';
+import { Center, FlatList } from 'native-base';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { transfer as transferApi } from '../../api';
 import dateTime from '../../utils/dateTime';
-import {AppBar, TransactionListItem} from './../../components';
+import { AppBar, TransactionListItem } from './../../components';
 
 class index extends PureComponent {
   constructor(props) {
@@ -26,7 +26,7 @@ class index extends PureComponent {
   }
 
   componentDidMount() {
-    const {navigation} = this.props;
+    const { navigation } = this.props;
     navigation.addListener('focus', () => {
       transferApi.history(0);
     });
@@ -41,7 +41,7 @@ class index extends PureComponent {
   render() {
     const {
       transfer,
-      navigation: {navigate},
+      navigation: { navigate },
     } = this.props;
     return (
       <>
@@ -49,7 +49,7 @@ class index extends PureComponent {
         <FlatList
           data={transfer?.histories}
           keyExtractor={item => item.id}
-          renderItem={({item}) => {
+          renderItem={({ item }) => {
             const amount = `${item.offer.base_amount} ${item.offer.base} (${item.offer.quote_amount} ${item.offer.quote})`;
             const time = dateTime(item.createdAt);
             return (
@@ -57,7 +57,7 @@ class index extends PureComponent {
                 amount={amount}
                 time={time}
                 webCode={item.offer.code}
-                onPress={() => navigate('TransactionDetail', {data: item})}
+                onPress={() => navigate('TransactionDetail', { data: item })}
               />
             );
           }}
@@ -80,7 +80,7 @@ class index extends PureComponent {
   }
 }
 
-function mapStateToProps({transfer}) {
+function mapStateToProps({ transfer }) {
   return {
     transfer,
   };

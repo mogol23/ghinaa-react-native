@@ -1,11 +1,11 @@
-import {store} from '../redux';
+import { store } from '../redux';
 import transfer from '../redux/actions/transfer';
-import {transfer as transferService} from '../services';
-import {transfer as transferHelper} from '../helpers';
+import { transfer as transferService } from '../services';
+import { transfer as transferHelper } from '../helpers';
 
 async function history(page: Number) {
   const {
-    transfer: {histories},
+    transfer: { histories },
   } = store.getState();
   try {
     transfer.fetchStart();

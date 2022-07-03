@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import {
   Box,
   Center,
@@ -9,9 +9,12 @@ import {
   Stack,
   HamburgerIcon,
 } from 'native-base';
-import {ColorType, SizeType} from 'native-base/lib/typescript/components/types';
+import {
+  ColorType,
+  SizeType,
+} from 'native-base/lib/typescript/components/types';
 import React from 'react';
-import {viewport} from '../../helpers';
+import { viewport } from '../../helpers';
 
 const logo = require('./../../assets/images/logo.png');
 const logoWidth = viewport.width / 4;
