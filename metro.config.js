@@ -7,11 +7,15 @@
 
 module.exports = {
   transformer: {
+    resetCache: true,
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,
         inlineRequires: true,
       },
     }),
+    resolver: {
+      sourceExts: ['jsx', 'js', 'json', 'ts', 'tsx'],
+    },
   },
 };
