@@ -1,7 +1,8 @@
-import { Button, Center, FormControl, Input, VStack } from 'native-base';
+import { Button, Center, FormControl, Image, Input, StatusBar, VStack } from 'native-base';
 import React, { PureComponent } from 'react';
-import { View } from 'react-native';
 import { auth } from '../../api';
+import { viewport } from '../../helpers';
+import Assets from './../../assets';
 import { AppBar } from './../../components';
 
 class index extends PureComponent {
@@ -9,8 +10,8 @@ class index extends PureComponent {
     super(props);
     this.state = {
       formData: {
-        email: 'fid@fidly.io',
-        password: 'fidly123',
+        email: '',
+        password: '',
       },
     };
   }
@@ -36,37 +37,38 @@ class index extends PureComponent {
     const { formData } = this.state;
     const { navigation } = this.props;
     return (
-      <View style={{ backgroundColor: 'white', flex: 1 }}>
-        <AppBar showMenu={false} />
-        <Center>
-          <VStack width="90%" mx="3">
-            <FormControl>
-              <FormControl.Label>E-mail</FormControl.Label>
-              <Input
-                value={formData.email}
-                placeholder=""
-                onChangeText={value => this.setData('email')(value)}
-              />
-            </FormControl>
+      <Center flex={1}>
+        <Image source={Assets.images.Background} position="absolute" width={viewport.width} height={viewport.height} />
+        <AppBar bgColor={'transparent'} showMenu={false} />
+        <VStack width="90%" mx="3" space={2}>
+          <FormControl>
+            <FormControl.Label>E-mail</FormControl.Label>
+            <Input
+              value={formData.email}
+              placeholder=""
+              onChangeText={value => this.setData('email')(value)}
+            />
+          </FormControl>
 
-            <FormControl>
-              <FormControl.Label>Mot de passe</FormControl.Label>
-              <Input
-                secureTextEntry
-                value={formData.password}
-                placeholder=""
-                onChangeText={value => this.setData('password')(value)}
-              />
-            </FormControl>
-            <Button onPress={this.onSubmit.bind(this)}>Se Connecter</Button>
-            <Button
-              variant="ghost"
-              onPress={() => navigation.navigate('ForgotPassword')}>
-              Mot de passe oublié?
-            </Button>
-          </VStack>
-        </Center>
-      </View>
+          <FormControl>
+            <FormControl.Label>Mot de passe</FormControl.Label>
+            <Input
+              secureTextEntry
+              value={formData.password}
+              placeholder=""
+              onChangeText={value => this.setData('password')(value)}
+            />
+          </FormControl>
+          <Button
+            my={3}
+            onPress={this.onSubmit.bind(this)}>Masuk</Button>
+          <Button
+            variant="ghost"
+            onPress={() => navigation.navigate('ForgotPassword')}>
+            Lupa kata sandi?
+          </Button>
+        </VStack>
+      </Center>
     );
   }
 }

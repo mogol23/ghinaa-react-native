@@ -3,17 +3,14 @@ import {
   Box,
   Center,
   HStack,
-  Icon,
   IconButton,
   Image,
   Stack,
   HamburgerIcon,
 } from 'native-base';
-import {
-  ColorType,
-  SizeType,
-} from 'native-base/lib/typescript/components/types';
+import { ColorType } from 'native-base/lib/typescript/components/types';
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { viewport } from '../../helpers';
 
 const logo = require('./../../assets/images/logo.png');
@@ -21,47 +18,39 @@ const logoWidth = viewport.width / 4;
 
 interface componentProps {
   bgColor: ColorType;
-  proLabel: Boolean;
-  proLabelBgColor: ColorType;
-  proLabelSize: SizeType;
   left: React.ReactChildren;
   showMenu: Boolean;
 }
 
-const index: React.FC<componentProps> = ({
-  bgColor,
-  proLabel,
-  proLabelBgColor,
-  proLabelSize,
-  showMenu,
-  ...props
-}) => {
+const index: React.FC<componentProps> = ({ bgColor, showMenu, ...props }) => {
   const navigation: any = useNavigation();
   return (
     <HStack
+      pt={StatusBar.currentHeight}
       bgColor={bgColor}
       px="1"
       py="2"
-      justifyContent="flex-start"
+      space={1}
       alignItems="center"
       shadow="3">
-      {showMenu && (
-        <IconButton
-          alignSelf="flex-start"
-          icon={<HamburgerIcon size="lg" color="darkBlue.500" />}
-          onPress={() => {
-            if (
-              'toggleDrawer' in navigation ||
-              'closeDrawer' in navigation ||
-              'openDrawer' in navigation
-            ) {
-              return navigation.toggleDrawer();
-            }
-          }}
-        />
-      )}
-      <Center flex="1">
-        <HStack space={1} alignItems="center" justifyItems="center">
+      <Stack minH="12" minW="12">
+        {showMenu && (
+          <IconButton
+            icon={<HamburgerIcon size="lg" />}
+            onPress={() => {
+              if (
+                'toggleDrawer' in navigation ||
+                'closeDrawer' in navigation ||
+                'openDrawer' in navigation
+              ) {
+                return navigation.toggleDrawer();
+              }
+            }}
+          />
+        )}
+      </Stack>
+      <Center flex={1}>
+        <HStack>
           <Image
             source={logo}
             alt="logo"
@@ -69,23 +58,21 @@ const index: React.FC<componentProps> = ({
             resizeMode="contain"
             width={logoWidth}
           />
-          {proLabel && (
-            <Box
-              bg={proLabelBgColor}
-              px="2"
-              borderRadius={proLabelSize}
-              _text={{
-                fontSize: 'xs',
-                fontWeight: 'medium',
-                color: 'white',
-                letterSpacing: 'lg',
-              }}>
-              PRO
-            </Box>
-          )}
+          <Box
+            mx="10"
+            position={'absolute'}
+            bottom={1}
+            _text={{
+              fontSize: 'xs',
+              fontWeight: 'medium',
+              color: 'white',
+              letterSpacing: 'lg',
+            }}>
+            Dalwa Bangil
+          </Box>
         </HStack>
       </Center>
-      <Stack position="absolute" right="1">
+      <Stack minH="12" minW="12">
         {props.left}
       </Stack>
     </HStack>
@@ -93,10 +80,7 @@ const index: React.FC<componentProps> = ({
 };
 
 index.defaultProps = {
-  bgColor: 'white',
-  proLabel: true,
-  proLabelBgColor: 'tertiary.600',
-  proLabelSize: 'lg',
+  bgColor: 'tertiary.400',
   showMenu: true,
 };
 
