@@ -1,4 +1,4 @@
-import { Button, Center, FormControl, Image, Input, VStack } from 'native-base';
+import { Button, Center, FormControl, Image, Input, Select, VStack } from 'native-base';
 import React, { PureComponent } from 'react';
 import { auth } from '../../api';
 import { viewport } from '../../helpers';
@@ -42,7 +42,23 @@ class index extends PureComponent {
         <AppBar bgColor={'transparent'} showMenu={false} />
         <VStack width="90%" mx="3" space={2}>
           <FormControl>
-            <FormControl.Label>E-mail</FormControl.Label>
+            <FormControl.Label>Nama Lengkap</FormControl.Label>
+            <Input
+              value={formData.email}
+              placeholder=""
+              onChangeText={value => this.setData('email')(value)}
+            />
+          </FormControl>
+          <FormControl>
+            <FormControl.Label>No Telp</FormControl.Label>
+            <Input
+              value={formData.email}
+              placeholder=""
+              onChangeText={value => this.setData('email')(value)}
+            />
+          </FormControl>
+          <FormControl>
+            <FormControl.Label>Email</FormControl.Label>
             <Input
               value={formData.email}
               placeholder=""
@@ -59,22 +75,32 @@ class index extends PureComponent {
               onChangeText={value => this.setData('password')(value)}
             />
           </FormControl>
+          <FormControl>
+            <FormControl.Label>Ulangi kata sandi</FormControl.Label>
+            <Input
+              secureTextEntry
+              value={formData.password}
+              placeholder=""
+              onChangeText={value => this.setData('password')(value)}
+            />
+          </FormControl>
+          <FormControl>
+            <FormControl.Label>Daftar Sebagai</FormControl.Label>
+            <Select>
+              <Select.Item label="Santri" value='santri' />
+              <Select.Item label="Wali Santri" value='wali-santri' />
+              <Select.Item label="Alumni" value='alumni' />
+            </Select>
+          </FormControl>
           <Button
             my={3}
-            onPress={this.onSubmit.bind(this)}>Masuk</Button>
+            onPress={this.onSubmit.bind(this)}>Daftar</Button>
           <Button
             my={0}
             p={1}
             variant="ghost"
-            onPress={() => navigation.navigate('ForgotPassword')}>
-            Lupa kata sandi?
-          </Button>
-          <Button
-            my={0}
-            p={1}
-            variant="ghost"
-            onPress={() => navigation.navigate('Register')}>
-            Daftar Akun Baru
+            onPress={() => navigation.navigate('Login')}>
+            Sudah punya akun?
           </Button>
         </VStack>
       </Center>
