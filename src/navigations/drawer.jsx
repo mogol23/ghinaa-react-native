@@ -1,12 +1,12 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import * as React from 'react';
 import {
-  Home,
   ChangePassword,
   UpdateProfile
 } from '../screens';
 import { AppDrawer } from '../components';
 import { connect } from 'react-redux';
+import AppStack from './app-stack';
 
 const Drawer = createDrawerNavigator();
 
@@ -14,15 +14,15 @@ function drawer({ isLoggedIn }) {
   return (
     <Drawer.Navigator
       useLegacyImplementation
-      initialRouteName="Home"
+      initialRouteName="AppStack"
       screenOptions={{ headerShown: false }}
       drawerContent={props => <AppDrawer {...props} />}>
       <Drawer.Screen
-        name="Home"
+        name="AppStack"
         options={{
           title: 'Beranda',
         }}
-        component={Home}
+        component={AppStack}
       />
       <Drawer.Screen
         name="ChangePassword"

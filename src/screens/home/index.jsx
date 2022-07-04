@@ -1,56 +1,9 @@
-import { Button, Center, FormControl, Pressable, Badge, Spacer, Flex, Image, Input, Icon, VStack, HStack, FlatList, Box, Divider, Stack, Text, Heading, IconButton } from 'native-base';
+import { Box, Divider, FlatList, Heading, HStack, Icon, Pressable, Stack, Text, VStack } from 'native-base';
 import React, { PureComponent } from 'react';
-import { auth } from '../../api';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { viewport } from '../../helpers';
 import dateTime, { generateRandomDate } from '../../utils/dateTime';
-import Assets from './../../assets';
 import { AppBar, BackgroundImage } from './../../components';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
-const drawer = [
-  {
-    title: 'SPP',
-    icon: {
-      name: 'build',
-      as: MaterialIcons
-    }
-  },
-  {
-    title: 'Uang Saku',
-    icon: {
-      name: 'build',
-      as: MaterialIcons
-    }
-  },
-  {
-    title: 'Laundry',
-    icon: {
-      name: 'build',
-      as: MaterialIcons
-    }
-  },
-  {
-    title: 'Zakat',
-    icon: {
-      name: 'build',
-      as: MaterialIcons
-    }
-  },
-  {
-    title: 'Infaq',
-    icon: {
-      name: 'build',
-      as: MaterialIcons
-    }
-  },
-  {
-    title: 'Shodaqoh',
-    icon: {
-      name: 'build',
-      as: MaterialIcons
-    }
-  },
-]
 
 class index extends PureComponent {
   constructor(props) {
@@ -199,6 +152,86 @@ class index extends PureComponent {
         password: '',
       },
     };
+
+    const { navigation } = props;
+
+    this.drawer = [
+      {
+        title: 'SPP',
+        icon: {
+          name: 'build',
+          as: MaterialIcons
+        },
+        onPress: () => {
+          navigation.navigate("SppStack",
+            {
+              screen: "SelectSantri",
+              params: { nextScreen: "Spp" }
+            }
+          );
+        }
+      },
+      {
+        title: 'Uang Saku',
+        icon: {
+          name: 'build',
+          as: MaterialIcons
+        },
+        onPress: () => {
+          navigation.navigate("UangSakuStack",
+            {
+              screen: "SelectSantri",
+              params: { nextScreen: "InputAmount" }
+            }
+          );
+        }
+      },
+      {
+        title: 'Laundry',
+        icon: {
+          name: 'build',
+          as: MaterialIcons
+        },
+        onPress: () => {
+          navigation.navigate("LaundryStack",
+            {
+              screen: "SelectSantri",
+              params: { nextScreen: "Laundry" }
+            }
+          );
+        }
+      },
+      {
+        title: 'Zakat',
+        icon: {
+          name: 'build',
+          as: MaterialIcons
+        },
+        onPress: () => {
+          navigation.navigate("Zakat");
+        }
+      },
+      {
+        title: 'Infaq',
+        icon: {
+          name: 'build',
+          as: MaterialIcons
+        },
+        onPress: () => {
+          navigation.navigate("Infaq");
+        }
+      },
+      {
+        title: 'Shodaqoh',
+        icon: {
+          name: 'build',
+          as: MaterialIcons
+        },
+        onPress: () => {
+          navigation.navigate("Shodaqoh");
+        }
+      },
+    ]
   }
 
   render() {
@@ -215,13 +248,13 @@ class index extends PureComponent {
               <FlatList
                 py={2}
                 scrollEnabled={false}
-                data={drawer}
+                data={this.drawer}
                 showsVerticalScrollIndicator={false}
                 numColumns={3}
                 columnWrapperStyle={{ justifyContent: 'space-between' }}
                 renderItem={({ item, index }) => {
                   return (
-                    <Pressable>
+                    <Pressable onPress={item.onPress}>
                       {({
                         isHovered,
                         isFocused,

@@ -66,15 +66,15 @@ function CustomDrawerContent({ isLoggedIn, ...props }) {
         onClose={closeSignoutDialog}>
         <AlertDialog.Content>
           <AlertDialog.Header>
-            êtes-vous sûr de vous deconnecter?
+            Anda yakin ingin keluar dari akun ini?
           </AlertDialog.Header>
           <AlertDialog.Footer>
             <Button.Group w="full" justifyContent="space-between" p={0} m={0}>
               <Button my={0} colorScheme="danger" onPress={closeSignoutDialog}>
-                Annuler
+                Tidak
               </Button>
               <Button my={0} onPress={signout}>
-                Oui
+                Ya
               </Button>
             </Button.Group>
           </AlertDialog.Footer>

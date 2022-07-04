@@ -1,17 +1,15 @@
 import { useNavigation } from '@react-navigation/core';
 import {
-  Box,
-  Center,
-  HStack,
-  IconButton,
+  ArrowBackIcon, Box,
+  Center, HamburgerIcon, HStack, Icon, IconButton,
   Image,
-  Stack,
-  HamburgerIcon,
+  Stack
 } from 'native-base';
 import { InterfaceHStackProps } from 'native-base/lib/typescript/components/primitives/Stack/HStack';
 import { ColorType } from 'native-base/lib/typescript/components/types';
 import React from 'react';
 import { StatusBar } from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { viewport } from '../../helpers';
 
 const logo = require('./../../assets/images/logo.png');
@@ -19,12 +17,12 @@ const logoWidth = viewport.width / 4;
 
 interface componentProps {
   bgColor: ColorType;
-  left: React.ReactChildren;
   showMenu: Boolean;
+  back: Boolean;
   containerProps: InterfaceHStackProps
 }
 
-const index: React.FC<componentProps> = ({ bgColor, showMenu, left, containerProps, ...props }) => {
+const index: React.FC<componentProps> = ({ bgColor, showMenu, containerProps, back, ...props }) => {
   const navigation: any = useNavigation();
   return (
     <HStack
@@ -36,9 +34,9 @@ const index: React.FC<componentProps> = ({ bgColor, showMenu, left, containerPro
       alignItems="center"
       shadow="3"
       {...containerProps}
-      >
+    >
       <Stack minH="12" minW="12">
-        {showMenu && (
+        {showMenu && !back && (
           <IconButton
             icon={<HamburgerIcon size="lg" color="primary.50" />}
             onPress={() => {
@@ -49,6 +47,14 @@ const index: React.FC<componentProps> = ({ bgColor, showMenu, left, containerPro
               ) {
                 return navigation.toggleDrawer();
               }
+            }}
+          />
+        )}
+        {back && (
+          <IconButton
+            icon={<ArrowBackIcon size="lg" color="primary.50" />}
+            onPress={() => {
+              navigation.goBack();
             }}
           />
         )}
@@ -77,8 +83,15 @@ const index: React.FC<componentProps> = ({ bgColor, showMenu, left, containerPro
         </HStack>
       </Center>
       <Stack minH="12" minW="12">
-        {left}
-      </Stack>
+        {showMenu && (
+          <IconButton
+            icon={<Icon name="shopping-cart" as={MaterialIcons} size="lg" color="primary.50" />}
+              onPress={() => {
+                navigation.navigate("Cart");
+              }}
+          />
+        )}
+            </Stack>
     </HStack>
   );
 };
@@ -86,6 +99,7 @@ const index: React.FC<componentProps> = ({ bgColor, showMenu, left, containerPro
 index.defaultProps = {
   bgColor: 'primary.600',
   showMenu: true,
+  back: false
 };
 
 export default index;
