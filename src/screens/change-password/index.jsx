@@ -1,19 +1,23 @@
-import { Button, Center, FormControl, Input, VStack } from 'native-base';
+import { Button, Center, FormControl, Pressable, Badge, Spacer, Flex, Image, Input, Icon, VStack, HStack, FlatList, Box, Divider, Stack, Text, Heading, IconButton } from 'native-base';
 import React, { PureComponent } from 'react';
-import { View } from 'react-native';
 import { auth } from '../../api';
-import { AppBar } from './../../components';
+import { viewport } from '../../helpers';
+import dateTime, { generateRandomDate } from '../../utils/dateTime';
+import Assets from './../../assets';
+import { AppBar, BackgroundImage } from './../../components';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 class index extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       formData: {
-        newPassword: '',
-        oldPassword: '',
+        email: '',
+        password: '',
       },
     };
   }
+
 
   setData(field) {
     return value => {
@@ -29,47 +33,49 @@ class index extends PureComponent {
 
   onSubmit() {
     const { formData } = this.state;
-    auth.changePassword(formData.newPassword, formData.oldPassword);
-  }
-
-  componentWillUnmount() {
-    this.state = {
-      formData: {
-        newPassword: '',
-        oldPassword: '',
-      },
-    };
+    auth.login(formData.email, formData.password);
   }
 
   render() {
-    const { formData } = this.state;
+    const { formData, datas } = this.state;
+    const { navigation } = this.props;
     return (
-      <View style={{ backgroundColor: 'white', flex: 1 }}>
-        <AppBar />
-        <Center>
-          <VStack width="90%" mx="3">
-            <FormControl>
-              <FormControl.Label>Nouveau mot de passe</FormControl.Label>
-              <Input
-                secureTextEntry
-                value={formData.newPassword}
-                placeholder=""
-                onChangeText={value => this.setData('newPassword')(value)}
-              />
-            </FormControl>
-            <FormControl>
-              <FormControl.Label>Mot de passe actuel</FormControl.Label>
-              <Input
-                secureTextEntry
-                value={formData.oldPassword}
-                placeholder=""
-                onChangeText={value => this.setData('oldPassword')(value)}
-              />
-            </FormControl>
-            <Button onPress={this.onSubmit.bind(this)}>Envoyer</Button>
-          </VStack>
-        </Center>
-      </View>
+      <Stack flex={1} alignItems={'center'}>
+        <BackgroundImage />
+        <AppBar containerProps={{ zIndex: 99 }} />
+        <VStack width="90%" mx="3" space={2}>
+          <FormControl>
+            <FormControl.Label>Kata sandi lama</FormControl.Label>
+            <Input
+              secureTextEntry
+              value={formData.password}
+              placeholder=""
+              onChangeText={value => this.setData('password')(value)}
+            />
+          </FormControl>
+          <FormControl>
+            <FormControl.Label>Kata sandi</FormControl.Label>
+            <Input
+              secureTextEntry
+              value={formData.password}
+              placeholder=""
+              onChangeText={value => this.setData('password')(value)}
+            />
+          </FormControl>
+          <FormControl>
+            <FormControl.Label>Ulangi kata sandi</FormControl.Label>
+            <Input
+              secureTextEntry
+              value={formData.password}
+              placeholder=""
+              onChangeText={value => this.setData('password')(value)}
+            />
+          </FormControl>
+          <Button
+            my={3}
+            onPress={this.onSubmit.bind(this)}>Kirim</Button>
+        </VStack>
+      </Stack>
     );
   }
 }

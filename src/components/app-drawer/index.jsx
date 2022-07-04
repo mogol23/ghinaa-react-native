@@ -34,10 +34,10 @@ function CustomDrawerContent({ isLoggedIn, ...props }) {
     <>
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
-        <DrawerItem
-          label="Contactez-nous"
+        {/* <DrawerItem
+          label="Ganti Kata Sandi"
           onPress={() => Linking.openURL('https://lyzi.fr/contactez-nous/')}
-        />
+        /> */}
       </DrawerContentScrollView>
       <VStack
         w="full"
