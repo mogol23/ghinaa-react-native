@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import { auth } from '../../api';
 import { viewport } from '../../helpers';
 import Assets from './../../assets';
-import { AppBar } from './../../components';
+import { AppBar, BackgroundImage } from './../../components';
 
 class index extends PureComponent {
   constructor(props) {
@@ -38,7 +38,7 @@ class index extends PureComponent {
     const { navigation } = this.props;
     return (
       <Center flex={1}>
-        <Image source={Assets.images.Background} position="absolute" width={viewport.width} height={viewport.height} />
+        <BackgroundImage />
         <AppBar bgColor={'transparent'} showMenu={false} />
         <VStack width="90%" mx="3" space={2}>
           <FormControl>

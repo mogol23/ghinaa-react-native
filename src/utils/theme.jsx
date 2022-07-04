@@ -73,7 +73,7 @@ export default extendTheme({
         _light: {
           placeholderTextColor: 'text.400',
           color: 'text.900',
-          borderColor: 'primary.200',
+          borderColor: 'primary.600',
           _hover: {
             borderColor: 'primary.600',
           },

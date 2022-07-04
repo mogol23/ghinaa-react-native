@@ -1,10 +1,7 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import * as React from 'react';
 import {
-  TransactionHistory,
-  Scanner,
-  Contact,
-  ChangePassword,
+  Home,
 } from '../screens';
 import { AppDrawer } from '../components';
 import { connect } from 'react-redux';
@@ -16,15 +13,15 @@ function drawer({ isLoggedIn }) {
   return (
     <Drawer.Navigator
       useLegacyImplementation
-      initialRouteName="Scanner"
+      initialRouteName="Home"
       screenOptions={{ headerShown: false }}
       drawerContent={props => <AppDrawer {...props} />}>
       <Drawer.Screen
-        name="Scanner"
+        name="Home"
         options={{
-          title: 'Accueil',
+          title: 'Beranda',
         }}
-        component={Scanner}
+        component={Home}
       />
       {/* <Drawer.Screen
         name="Contact"
@@ -38,7 +35,7 @@ function drawer({ isLoggedIn }) {
           title: "Changer de mot de passe"
         }}
         component={ChangePassword} /> */}
-      {isLoggedIn && (
+      {/* {isLoggedIn && (
         <Drawer.Screen
           name="TransactionStack"
           options={{
@@ -46,7 +43,7 @@ function drawer({ isLoggedIn }) {
           }}
           component={transactionStack}
         />
-      )}
+      )} */}
     </Drawer.Navigator>
   );
 }

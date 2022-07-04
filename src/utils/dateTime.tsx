@@ -1,5 +1,5 @@
 import moment from 'moment';
-import 'moment/locale/fr';
+import 'moment/locale/id';
 
 moment.locale('en'); //default locale
 
@@ -8,7 +8,7 @@ export function instance(
   fromFrormat: undefined | string,
   toFormat: undefined | string,
 ) {
-  return moment(date, fromFrormat).locale('fr').format(toFormat);
+  return moment(date, fromFrormat).locale('id').format(toFormat);
 }
 
 export function dateTime(
@@ -32,6 +32,10 @@ export function timeFromDate(date: string | Date) {
 
 export function time(date: string | Date) {
   return instance(date, 'HH:mm:ss', 'HH:mm');
+}
+
+export function generateRandomDate(){
+  return new Date(new Date(+(new Date()) - Math.floor(Math.random()*10000000000)));
 }
 
 export default dateTime;

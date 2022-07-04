@@ -8,6 +8,7 @@ import {
   Stack,
   HamburgerIcon,
 } from 'native-base';
+import { InterfaceHStackProps } from 'native-base/lib/typescript/components/primitives/Stack/HStack';
 import { ColorType } from 'native-base/lib/typescript/components/types';
 import React from 'react';
 import { StatusBar } from 'react-native';
@@ -20,9 +21,10 @@ interface componentProps {
   bgColor: ColorType;
   left: React.ReactChildren;
   showMenu: Boolean;
+  containerProps: InterfaceHStackProps
 }
 
-const index: React.FC<componentProps> = ({ bgColor, showMenu, ...props }) => {
+const index: React.FC<componentProps> = ({ bgColor, showMenu, left, containerProps, ...props }) => {
   const navigation: any = useNavigation();
   return (
     <HStack
@@ -32,11 +34,13 @@ const index: React.FC<componentProps> = ({ bgColor, showMenu, ...props }) => {
       py="2"
       space={1}
       alignItems="center"
-      shadow="3">
+      shadow="3"
+      {...containerProps}
+      >
       <Stack minH="12" minW="12">
         {showMenu && (
           <IconButton
-            icon={<HamburgerIcon size="lg" />}
+            icon={<HamburgerIcon size="lg" color="primary.50" />}
             onPress={() => {
               if (
                 'toggleDrawer' in navigation ||
@@ -73,14 +77,14 @@ const index: React.FC<componentProps> = ({ bgColor, showMenu, ...props }) => {
         </HStack>
       </Center>
       <Stack minH="12" minW="12">
-        {props.left}
+        {left}
       </Stack>
     </HStack>
   );
 };
 
 index.defaultProps = {
-  bgColor: 'tertiary.400',
+  bgColor: 'primary.600',
   showMenu: true,
 };
 

@@ -5,10 +5,9 @@ import thunkMiddleware from 'redux-thunk';
 import monitorReducersEnhancer from './enhancers/monitorReducers';
 import loggerMiddleware from './middleware/logger';
 import rootReducer from './reducers';
-import reduxFlipper from 'redux-flipper';
 
 const middlewares = [thunkMiddleware];
-const devMiddlewares = [loggerMiddleware, reduxFlipper()];
+const devMiddlewares = [loggerMiddleware];
 __DEV__ && middlewares.push(...devMiddlewares);
 const middlewareEnhancer = applyMiddleware(...middlewares);
 
