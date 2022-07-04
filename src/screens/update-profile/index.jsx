@@ -43,7 +43,7 @@ class index extends PureComponent {
       <Stack flex={1} alignItems={'center'}>
         <BackgroundImage />
         <AppBar containerProps={{ zIndex: 99 }} />
-        <ScrollView flex={1} w={'90%'}>
+        <ScrollView flex={1} w={'90%'} showsVerticalScrollIndicator={false}>
             <Text color={'red.400'}>Data Mandatory</Text>
             <FormControl>
               <FormControl.Label>Nama Lengkap</FormControl.Label>

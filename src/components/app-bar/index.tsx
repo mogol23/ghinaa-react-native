@@ -8,9 +8,9 @@ import {
 import { InterfaceHStackProps } from 'native-base/lib/typescript/components/primitives/Stack/HStack';
 import { ColorType } from 'native-base/lib/typescript/components/types';
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { viewport } from '../../helpers';
+import { isIphoneX, viewport } from '../../helpers';
 
 const logo = require('./../../assets/images/logo.png');
 const logoWidth = viewport.width / 4;
@@ -26,7 +26,7 @@ const index: React.FC<componentProps> = ({ bgColor, showMenu, containerProps, ba
   const navigation: any = useNavigation();
   return (
     <HStack
-      pt={StatusBar.currentHeight}
+      pt={Platform.select({ios: isIphoneX() ? StatusBar.currentHeight : 0})}
       bgColor={bgColor}
       px="1"
       py="2"

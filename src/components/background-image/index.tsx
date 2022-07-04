@@ -3,6 +3,7 @@ import { Image, View } from 'native-base';
 import Assets from "../../assets";
 import { viewport } from '../../helpers';
 import { InterfaceImageProps } from 'native-base/lib/typescript/components/primitives/Image/types';
+import { Platform } from 'react-native';
 
 const index: React.FC<InterfaceImageProps> = (props) => {
   return (
@@ -17,7 +18,7 @@ const index: React.FC<InterfaceImageProps> = (props) => {
         position="absolute"
         width={viewport.width}
         height={viewport.height}
-        opacity={.5}
+        opacity={Platform.select({ ios: .5, android: .8 })}
         {...props} />
 
     </>
