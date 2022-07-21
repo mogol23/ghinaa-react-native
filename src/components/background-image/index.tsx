@@ -8,17 +8,17 @@ import { Platform } from 'react-native';
 const index: React.FC<InterfaceImageProps> = (props) => {
   return (
     <>
-      <View
+      {/* <View
         position={'absolute'}
         bg={'rgba(107,107,107,.2)'}
         width={viewport.width}
-        height={viewport.height} />
+        height={viewport.height} /> */}
       <Image
-        source={Assets.images.Background}
+        source={Assets.images.Bg2}
         position="absolute"
         width={viewport.width}
         height={viewport.height}
-        opacity={Platform.select({ ios: .5, android: .8 })}
+        // opacity={Platform.select({ ios: .5, android: .8 })}
         {...props} />
 
     </>
