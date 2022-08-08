@@ -3,7 +3,8 @@ import {
   ArrowBackIcon, Box,
   Center, HamburgerIcon, HStack, Icon, IconButton,
   Image,
-  Stack
+  Stack,
+  Text
 } from 'native-base';
 import { InterfaceHStackProps } from 'native-base/lib/typescript/components/primitives/Stack/HStack';
 import { ColorType } from 'native-base/lib/typescript/components/types';
@@ -64,25 +65,7 @@ const index: React.FC<componentProps> = ({ bgColor, showMenu, containerProps, ba
       </Stack>
       <Center flex={1}>
         <HStack>
-          <Image
-            source={logo}
-            alt="logo"
-            size="sm"
-            resizeMode="contain"
-            width={logoWidth}
-          />
-          <Box
-            mx="10"
-            position={'absolute'}
-            bottom={1}
-            _text={{
-              fontSize: 'xs',
-              fontWeight: 'medium',
-              color: 'white',
-              letterSpacing: 'lg',
-            }}>
-            Dalwa Bangil
-          </Box>
+          <Text fontFamily={'SnellRoundhand-BlackScript'} color={'white'} fontSize={'2xl'}>Adab Santri</Text>
         </HStack>
       </Center>
       <Stack minH="12" minW="12">

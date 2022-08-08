@@ -91,10 +91,10 @@ class Index extends PureComponent {
           as: MaterialCommunityIcons
         },
         onPress: () => {
-          navigation.navigate("LaundryStack",
+          navigation.navigate("UangSakuStack",
             {
               screen: "SelectSantri",
-              params: { nextScreen: "Laundry" }
+              params: { nextScreen: "InputAmount" }
             }
           );
         }
