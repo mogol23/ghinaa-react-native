@@ -7,7 +7,7 @@ import Assets from './../../assets';
 import { AppBar, BackgroundImage } from './../../components';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-class index extends PureComponent {
+class Index extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -80,4 +80,4 @@ class index extends PureComponent {
   }
 }
 
-export default index;
+export default Index;

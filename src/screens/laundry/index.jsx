@@ -7,7 +7,7 @@ import { toast } from '../../utils';
 import { instance as dateTimeHelperInstance } from '../../utils/dateTime';
 import { AppBar, BackgroundImage } from './../../components';
 
-class index extends PureComponent {
+class Index extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -116,4 +116,4 @@ class index extends PureComponent {
   }
 }
 
-export default index;
+export default Index;

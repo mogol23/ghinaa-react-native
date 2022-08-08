@@ -37,12 +37,14 @@ export default extendTheme({
     //     colorScheme: 'emerald',
     //   },
     // },
-    // // FormControl: {
-    // //   colorScheme: 'emerald',
-    // //   defaultProps: {
-    // //     my: 2,
-    // //   },
-    // // },
+    FormControl: {
+      defaultProps: {
+        my: 2,
+      },
+    },
+    Text:{
+     color:'white'
+    },
     FormControlLabel: {
       baseStyle: {
         _text: {
@@ -52,7 +54,7 @@ export default extendTheme({
         my: '1',
         _light: {
           _text: {
-            color: 'text.700',
+            color: 'white',
           },
           _astrick: {
             color: 'error.600',
@@ -72,7 +74,7 @@ export default extendTheme({
       baseStyle: {
         _light: {
           placeholderTextColor: 'text.400',
-          color: 'text.900',
+          color: 'white',
           borderColor: 'primary.600',
           _hover: {
             borderColor: 'primary.600',

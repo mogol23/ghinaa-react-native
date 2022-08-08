@@ -14,6 +14,7 @@ const index: React.FC<InterfaceImageProps> = (props) => {
         width={viewport.width}
         height={viewport.height} /> */}
       <Image
+        alt='background'
         source={Assets.images.Bg2}
         position="absolute"
         width={viewport.width}

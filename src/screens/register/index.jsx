@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import { auth } from '../../api';
 import { AppBar, BackgroundImage } from './../../components';
 
-class index extends PureComponent {
+class Index extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -106,4 +106,4 @@ class index extends PureComponent {
   }
 }
 
-export default index;
+export default Index;

@@ -5,7 +5,7 @@ import { toast } from '../../utils';
 import { AppBar, BackgroundImage } from './../../components';
 
 
-class index extends PureComponent {
+class Index extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -92,4 +92,4 @@ class index extends PureComponent {
   }
 }
 
-export default index;
+export default Index;

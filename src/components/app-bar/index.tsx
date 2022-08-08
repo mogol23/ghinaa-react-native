@@ -8,9 +8,9 @@ import {
 import { InterfaceHStackProps } from 'native-base/lib/typescript/components/primitives/Stack/HStack';
 import { ColorType } from 'native-base/lib/typescript/components/types';
 import React from 'react';
-import { Platform, StatusBar } from 'react-native';
+import { Platform } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { isIphoneX, viewport } from '../../helpers';
+import { statusBar, viewport } from '../../helpers';
 
 const logo = require('./../../assets/images/logo.png');
 const logoWidth = viewport.width / 4;
@@ -22,11 +22,14 @@ interface componentProps {
   containerProps: InterfaceHStackProps
 }
 
+
 const index: React.FC<componentProps> = ({ bgColor, showMenu, containerProps, back, ...props }) => {
   const navigation: any = useNavigation();
   return (
     <HStack
-      pt={Platform.select({ios: isIphoneX() ? StatusBar.currentHeight : 0})}
+      pt={Platform.select({
+        ios: statusBar.StatusBarHeight
+      })}
       bgColor={bgColor}
       px="1"
       py="2"
@@ -86,12 +89,12 @@ const index: React.FC<componentProps> = ({ bgColor, showMenu, containerProps, ba
         {showMenu && (
           <IconButton
             icon={<Icon name="shopping-cart" as={MaterialIcons} size="lg" color="primary.50" />}
-              onPress={() => {
-                navigation.navigate("Cart");
-              }}
+            onPress={() => {
+              navigation.navigate("Cart");
+            }}
           />
         )}
-            </Stack>
+      </Stack>
     </HStack>
   );
 };

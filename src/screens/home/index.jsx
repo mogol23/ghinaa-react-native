@@ -1,45 +1,19 @@
 import { Box, Divider, FlatList, Heading, HStack, Icon, Pressable, Stack, Text, VStack } from 'native-base';
 import React, { PureComponent } from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
 import { viewport } from '../../helpers';
 import dateTime, { generateRandomDate } from '../../utils/dateTime';
 import { AppBar, BackgroundImage } from './../../components';
 
-class index extends PureComponent {
+class Index extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       datas: [
         {
           date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react- native -screens react-freeze@1.0.0" has incorrect peer dependency "react@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-native-screens'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-native-screependency "react@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-nativeze@1.0.0" has incorrect peer dependency "react@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-native-screens react-freeze@1.0.0" ht@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-native-screependency "react@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
           text: 'Lorem ipsum dor sir amet "react-nativeze@1.0.0" has incorrect peer dependency "react@^17.0.0".'
         },
         {
@@ -69,82 +43,6 @@ class index extends PureComponent {
         {
           date: generateRandomDate(),
           text: 'Lorem ipsum dor sir amet "react-native-screens react-freeze@1.0.0" ht@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-nativeze@1.0.0" has incorrect peer dependency "react@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-native-screens react-freeze@1.0.0" ht@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-nativeze@1.0.0" has incorrect peer dependency "react@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-native-screens react-freeze@1.0.0" ht@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-nativeze@1.0.0" has incorrect peer dependency "react@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-native-screens react-freeze@1.0.0" ht@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-nativeze@1.0.0" has incorrect peer dependency "react@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-native-screens react-freeze@1.0.0" ht@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-nativeze@1.0.0" has incorrect peer dependency "react@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-native-screens react-freeze@1.0.0" ht@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-nativeze@1.0.0" has incorrect peer dependency "react@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor sir amet "react-native-screens react-freeze@1.0.0" ht@^17.0.0".'
-        },
-        {
-          date: generateRandomDate(),
-          text: 'Lorem ipsum dor'
         },
       ],
       formData: {
@@ -159,8 +57,8 @@ class index extends PureComponent {
       {
         title: 'SPP',
         icon: {
-          name: 'build',
-          as: MaterialIcons
+          name: 'line-graph',
+          as: Entypo
         },
         onPress: () => {
           navigation.navigate("SppStack",
@@ -174,7 +72,7 @@ class index extends PureComponent {
       {
         title: 'Uang Saku',
         icon: {
-          name: 'build',
+          name: 'food-bank',
           as: MaterialIcons
         },
         onPress: () => {
@@ -187,10 +85,10 @@ class index extends PureComponent {
         }
       },
       {
-        title: 'Laundry',
+        title: 'Tabungan Santri',
         icon: {
-          name: 'build',
-          as: MaterialIcons
+          name: 'bank',
+          as: MaterialCommunityIcons
         },
         onPress: () => {
           navigation.navigate("LaundryStack",
@@ -204,8 +102,8 @@ class index extends PureComponent {
       {
         title: 'Zakat',
         icon: {
-          name: 'build',
-          as: MaterialIcons
+          name: 'awareness-ribbon',
+          as: Entypo
         },
         onPress: () => {
           navigation.navigate("Zakat");
@@ -214,8 +112,8 @@ class index extends PureComponent {
       {
         title: 'Infaq',
         icon: {
-          name: 'build',
-          as: MaterialIcons
+          name: 'awareness-ribbon',
+          as: Entypo
         },
         onPress: () => {
           navigation.navigate("Infaq");
@@ -224,8 +122,8 @@ class index extends PureComponent {
       {
         title: 'Shodaqoh',
         icon: {
-          name: 'build',
-          as: MaterialIcons
+          name: 'awareness-ribbon',
+          as: Entypo
         },
         onPress: () => {
           navigation.navigate("Shodaqoh");
@@ -261,7 +159,7 @@ class index extends PureComponent {
                         isPressed
                       }) => {
                         return (
-                          <Box
+                          <Stack
                             w={viewport.width / 4}
                             h={viewport.width / 5}
                             my={2}
@@ -277,18 +175,18 @@ class index extends PureComponent {
                                 scale: isPressed ? 0.96 : 1
                               }]
                             }}>
-                            <Icon name={item.icon.name} as={item.icon.as} size="sm" />
-                            <Text mt="3" fontSize="xs">
+                            <Icon name={item.icon.name} as={item.icon.as} size="lg" />
+                            <Text mt="3" numberOfLines={1} fontSize="xs" textAlign={'center'} textBreakStrategy="balanced">
                               {item.title}
                             </Text>
-                          </Box>
+                          </Stack>
                         )
                       }}
                     </Pressable>
                   );
                 }}
               />
-              <Heading>
+              <Heading color={'white'}>
                 Berita
               </Heading>
             </>
@@ -300,8 +198,8 @@ class index extends PureComponent {
               <Box>
                 <HStack alignItems={'flex-start'}>
                   <VStack alignItems={'center'} w={'40px'} h={'40px'} p={'2px'} bg='primary.500'>
-                    <Text fontSize={'sm'} fontWeight={'bold'}>{dateTime(item.date, 'D')}</Text>
-                    <Text fontSize={'xs'}>{dateTime(item.date, 'MMM')}</Text>
+                    <Text color={'white'} fontSize={'sm'} fontWeight={'bold'}>{dateTime(item.date, 'D')}</Text>
+                    <Text color={'white'} fontSize={'xs'}>{dateTime(item.date, 'MMM')}</Text>
                   </VStack>
                   <HStack flex={1} h={'40px'} bg='primary.100' p={'2px'} overflow={'hidden'}>
                     <Text numberOfLines={2} ellipsizeMode="tail" fontSize={'xs'}>{item.text}</Text>
@@ -319,4 +217,4 @@ class index extends PureComponent {
   }
 }
 
-export default index;
+export default Index;
