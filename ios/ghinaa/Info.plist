@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -69,6 +69,11 @@
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
 		<string>Fontisto.ttf</string>
+		<string>Snell Roundhand Regular.ttf</string>
+		<string>SnellBT-Bold.ttf</string>
+		<string>SnellBT-Regular.ttf</string>
+		<string>SnellRoundhand-BlackScript.ttf</string>
+		<string>SnellRoundhand-BoldScript.ttf</string>
 	</array>
 </dict>
 </plist>

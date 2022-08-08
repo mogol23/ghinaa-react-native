@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Snell Roundhand Regular.ttf",
+      "sha1": "5c4eede75bcbd11985d6792ac8c1fe95f7c87f1c"
+    },
+    {
+      "path": "src/assets/fonts/SnellBT-Bold.ttf",
+      "sha1": "148e32e8749d6593c20ab675515ced760f3126b4"
+    },
+    {
+      "path": "src/assets/fonts/SnellBT-Regular.ttf",
+      "sha1": "720b583373a400d697d465d4bbd642f53074e77d"
+    },
+    {
+      "path": "src/assets/fonts/SnellRoundhand-BlackScript.ttf",
+      "sha1": "3a5a7b0f0c9ea29ef60ab399151a4d35fe0012ba"
+    },
+    {
+      "path": "src/assets/fonts/SnellRoundhand-BoldScript.ttf",
+      "sha1": "99fadbab6c63ca007a1231e71d7328bc28d6dd36"
+    }
+  ]
+}
